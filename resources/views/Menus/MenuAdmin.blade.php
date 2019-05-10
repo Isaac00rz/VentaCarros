@@ -16,6 +16,7 @@
             <li class="podcasts"><a href="{{ url('/')}}" title="Cotización"></a></li>
             <li class="venta"><a href="{{ url('/')}}" title="Venta"></a></li>
             <li class="cobranza"><a href="{{ url('/')}}" title="Cobranza"></a></li>
+            <li class="reportes"><a href="{{ url('/')}}" title="Reportes"></a></li>
             <li class="contact"><a href="{{ route('logout') }}" title="Salir"
                 onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">

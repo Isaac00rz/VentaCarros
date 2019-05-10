@@ -64,4 +64,7 @@ ul#navigation .venta a    {
 ul#navigation .cobranza a    {
     background-image: url('images/cobranza.png');
 }
+ul#navigation .reportes a    {
+    background-image: url('images/reportes.png');
+}
 
