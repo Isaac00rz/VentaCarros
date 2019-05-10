@@ -1,0 +1,43 @@
+﻿#tabla {
+    width: 100%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:16px;
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+#tabla th {
+    padding: 5px;
+    font-size: 20px;
+    background-color: #83aec0;
+    background-image: url(fondo_th.png);
+    background-repeat: repeat-x;
+    color: #FFFFFF;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-right-color: #558FA6;
+    border-bottom-color: #558FA6;
+    font-family: “Trebuchet MS”, Arial;
+    text-transform: uppercase;
+}
+
+ fieldset{
+     width: 90%;
+    margin:auto;
+    margin-top: 1%;
+    background: #ffffff;
+    background: -moz-linear-gradient(top, #ffffff 0%, #e1e1e1 37%, #f1f1f1 50%, #e1e1e1 70%, #f6f6f6 100%);
+    background: -webkit-linear-gradient(top, #ffffff 0%,#e1e1e1 37%,#f1f1f1 50%,#e1e1e1 70%,#f6f6f6 100%);
+    background: linear-gradient(to bottom, #ffffff 0%,#e1e1e1 37%,#f1f1f1 50%,#e1e1e1 70%,#f6f6f6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 );
+    border: 5px groove;
+}
+ fieldset > legend {
+    font-size: 30px;
+    color: rgba(3, 3, 3, 0.9);
+    
+}

@@ -1,0 +1,60 @@
+.contenido > fieldset > a {
+    border: none;
+    background: #3a7999;
+    color: #f2f2f2;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 500ms ease;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 5px;
+    }
+
+.contenido > fieldset > a:before {
+    content:”;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0px;
+    height: 42px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 5px;
+    transition: all 2s ease;
+}
+
+.contenido > fieldset > a:hover {
+    background: rgba(0,0,0,0);
+    color: #3a7999;
+    box-shadow: inset 0 0 0 3px #3a7999;
+    }
+
+.contenido > fieldset{
+    width: 60%;
+    margin:auto;
+    margin-top: 1%;
+    background: #ffffff;
+    background: -moz-linear-gradient(top, #ffffff 0%, #e1e1e1 37%, #f1f1f1 50%, #e1e1e1 70%, #f6f6f6 100%);
+    background: -webkit-linear-gradient(top, #ffffff 0%,#e1e1e1 37%,#f1f1f1 50%,#e1e1e1 70%,#f6f6f6 100%);
+    background: linear-gradient(to bottom, #ffffff 0%,#e1e1e1 37%,#f1f1f1 50%,#e1e1e1 70%,#f6f6f6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 );
+    border: 5px groove;
+}
+.contenido > fieldset > p{
+    line-height: 10px;
+    color: rgba(3, 3, 3, 0.9);
+    font-size: 25px;
+}
+.contenido > fieldset > hr {
+	background:rgb(0, 0, 0);
+	height:3px;
+    border:none;
+    margin-top: 20px;
+}
+.contenido > fieldset > legend {
+    font-size: 30px;
+    color: rgba(3, 3, 3, 0.9);
+    
+}

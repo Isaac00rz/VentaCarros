@@ -1,0 +1,45 @@
+.foot{
+    background-color: #F1F1F1;
+    padding: 2%;
+    margin-top: 15%;
+    text-align: center;
+    font-family: Segoe UI;
+    /*color:white;*/
+    font-size: 15px;
+    border-top:ridge 2px;
+}
+.foot .campus{
+    display:flex;
+    margin-left: 10%;
+    width: 80%;
+}
+.foot .campus .addressCampus{
+    width: 46%;
+    padding: 0% 2%;
+}
+.foot div #generalInformation{
+    clear:both;
+    display: block;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.foot div p a #facebookIco{
+    width:3%; 
+    margin:0%;
+    padding:0%;
+    transform:translateY(25%);
+    -webkit-transform:translateY(25%);
+    -o-transform:translateY(25%);
+    -moz-transform:translateY(25%);
+    -ms-transform:translateY(25%);
+    transition:all 0.5s;
+}
+.foot div p a #facebookIco:hover{
+    transform:scale(1.2);
+    -webkit-transform:scale(1.2);
+    -o-transform:scale(1.2);
+    -ms-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    transition:all 0.5s;
+}

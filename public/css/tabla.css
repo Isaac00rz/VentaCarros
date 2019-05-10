@@ -1,0 +1,135 @@
+.contenido > fieldset{
+    width: 60%;
+    margin:auto;
+    margin-top: 1%;
+    background: #ffffff;
+    background: -moz-linear-gradient(top, #ffffff 0%, #e1e1e1 37%, #f1f1f1 50%, #e1e1e1 70%, #f6f6f6 100%);
+    background: -webkit-linear-gradient(top, #ffffff 0%,#e1e1e1 37%,#f1f1f1 50%,#e1e1e1 70%,#f6f6f6 100%);
+    background: linear-gradient(to bottom, #ffffff 0%,#e1e1e1 37%,#f1f1f1 50%,#e1e1e1 70%,#f6f6f6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 );
+    border: 5px groove;
+}
+.contenido > fieldset > p{
+    line-height: 10px;
+    color: rgba(3, 3, 3, 0.9);
+    font-size: 25px;
+}
+.contenido > fieldset > hr {
+	background:rgb(0, 0, 0);
+	height:3px;
+    border:none;
+    margin-top: 20px;
+}
+.contenido > fieldset > legend {
+    font-size: 30px;
+    color: rgba(3, 3, 3, 0.9);
+    
+}
+
+#tab{
+    width: 90%;
+    min-width: 90%;
+    border: none;
+    float: left;
+    max-width: 1800px;
+}
+.tds{
+    width: 11%;
+    min-width: 11%;
+}
+
+.inputs{
+    width: 100%;
+    min-width: 100%;
+    text-align: center;
+}
+
+select{
+    width: 100%;
+    min-width: 100%;
+    text-align: center;
+}
+
+#aceptar{
+    padding: 10px;
+    width: 10%;
+    min-width: 10%;
+    margin-left: 10px; 
+    margin-top: 70px;
+    background: #3a7999;
+    position: fixed; 
+    color: white;
+    border: 2px solid rgb(0,0,0);
+    right: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 10%;
+    box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+}
+#add{
+    padding: 10px;
+    width: 10%;
+    min-width: 10%;
+    background: #3a7999;
+    margin-left: 10px; 
+    position: fixed;
+    color: white;
+    border: 2px solid rgb(0,0,0);
+    right: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 10%;
+    box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    
+}
+
+#aceptar:hover{
+    background: rgba(0,0,0,0);
+    color: #3a7999;
+    box-shadow: inset 0 0 0 3px #3a7999;                               
+}
+
+#add:hover{
+    background: rgba(0,0,0,0);
+    color: #3a7999;
+    box-shadow: inset 0 0 0 3px #3a7999;
+}
+
+#cabecera{
+    background:#3a7999;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+}
+
+@media screen and (max-width:800px){
+#tab{
+        width: 100%;
+        min-width: 100%;
+    }
+
+#add{
+    position: relative;
+    width: 150px;
+    min-width: 150px;
+    margin-top: 20px;
+}
+
+#aceptar{
+    position: relative;
+    width: 160px;
+    min-width: 160px;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+}
+@media screen and (max-width:600px){
+    #tab{
+            width: 200%;
+            min-width: 200%;
+        }
+    }
