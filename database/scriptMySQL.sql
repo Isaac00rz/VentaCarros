@@ -41,6 +41,7 @@ CREATE TABLE Venta (
     Interes Double,
     Fecha Date NOT NULL,
     Tasa Double,
+    Comision Double,
     FOREIGN KEY (IdVendedor) REFERENCES Vendedor(Id),
     FOREIGN KEY (IdCliente) REFERENCES Cliente(RFC),
     FOREIGN KEY (IdAuto) REFERENCES Auto(Id)
@@ -54,4 +55,21 @@ CREATE TABLE Pago(
     Importe Double,
     FOREIGN KEY (IdCliente) REFERENCES Cliente(RFC),
     FOREIGN KEY (IdVenta) REFERENCES Venta(Id)
+);
+
+CREATE TABLE Cotizaciones (
+    Id Integer PRIMARY KEY AUTO_INCREMENT,
+    IdAuto Integer,
+    IdVendedor Integer,
+    IdCliente varchar(50) NOT NULL,
+    Fecha date,
+    Descuento Double,
+    Enganche Double NOT NULL,
+    Plazos Integer NOT NULL,
+    Interes Double,
+    Tasa Double,
+    Comision Double,
+    FOREIGN KEY (IdVendedor) REFERENCES Vendedor(Id),
+    FOREIGN KEY (IdCliente) REFERENCES Cliente(RFC),
+    FOREIGN KEY (IdAuto) REFERENCES Auto(Id)
 );
