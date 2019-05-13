@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/Vendedores',"VendedoresController@index");
+Route::get('/Vendedores/Alta',"VendedoresController@formularioAlta");
+Route::post('/Altas/Vendedor/altaVendedor',"VendedoresController@altaVendedor");
+Route::get('/Vendedores/BajaMod',"VendedoresController@busqueda");

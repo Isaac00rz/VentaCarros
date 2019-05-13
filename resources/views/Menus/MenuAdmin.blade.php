@@ -10,7 +10,7 @@
         <div class="scroll"></div>
         <ul id="navigation">
             <li class="home"><a href="{{ url('/home') }}" title="Home"></a></li>
-            <li class="about"><a href="{{ url('/') }}" title="Vendedores"></a></li>
+            <li class="about"><a href="{{ url('/Vendedores') }}" title="Vendedores"></a></li>
             <li class="search"><a href="{{ url('/')}}" title="Clientes"></a></li>
             <li class="rssfeed"><a href="{{ url('/') }}" title="Autos"></a></li>
             <li class="podcasts"><a href="{{ url('/')}}" title="Cotización"></a></li>
