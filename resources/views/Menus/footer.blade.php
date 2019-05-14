@@ -1,11 +1,13 @@
 <link rel = "stylesheet" href = "{{ asset('css/footer.css') }}"/>
 <footer class="foot">
-	<h3>Sistema de Asistencia</h3>
+	<h3>Sistema de Venta de Carros</h3>
 	<div class="campus">
 		<div class="addressCampus">
 			<h4 style="color:green;">Autor</h4>
 			<p>
-				Isaac Ulises Hernandez Marquez, Estudiante del Instituto Tecnologico de León
+				Isaac Ulises Hernandez Marquez.
+				Isaac Perez Segura.
+				Giovanna Estefania Alvizo Juarez, Estudiantes del Instituto Tecnologico de León
 			</p>
 		</div>
 		<div class="addressCampus">

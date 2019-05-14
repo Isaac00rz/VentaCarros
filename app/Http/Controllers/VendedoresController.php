@@ -65,4 +65,76 @@ class VendedoresController extends Controller
             return redirect('/login');
         }
     }
+
+    public function formularioMod($idVendedor){
+        if(Auth::check()){
+            $consulta = DB::table('vendedor')
+            ->select('id','nombre','apellidoP','apellidoM','telefono','email') 
+            ->where('id','=',$idVendedor)
+            ->get();
+            return view('/Modificacion/modificarVendedor')->with('vendedores',$consulta);
+
+        }else{
+            return redirect('/login');
+        }
+    }
+
+    public function editarVendedor(Request $request){
+        if(Auth::check()){
+            $nombre = $request->input('nombre');
+            $apellidoP = $request->input('apellidoP');
+            $apellidoM = $request->input('apellidoM');
+            $telefono = $request->input('telefono');
+            $email = $request->input('email');
+            $idVendedor = $request->input('id');
+
+            $consulta = DB::table('vendedor')
+                ->where('id','=',$idVendedor)
+                ->update(['nombre'=> $nombre,
+                'apellidoP'=>$apellidoP,'apellidoM' => $apellidoM,
+                'telefono'=>$telefono,'email'=>$email]);
+
+            return redirect('Vendedores/BajaMod')->with('message', 'Datos Modificados');
+        }else{
+            return redirect('/login');
+        }
+    }
+
+    public function eliminar($idVendedor){
+        if(Auth::check()){
+            $consulta = DB::table('vendedor')
+                ->where('id','=',$idVendedor)
+                ->delete();
+
+            return redirect('Vendedores/BajaMod')->with('message', 'Datos Modificados');
+        }else{
+            return redirect('/login');
+        }
+    }
+
+    public function buscarTodo(){
+        if(Auth::check()){
+            $consulta = DB::table('vendedor')
+            ->select(DB::raw("id, CONCAT(nombre,' ',apellidoP,' ',apellidoM) as nombre, telefono, email")) 
+            ->paginate(10);
+            return view('/Busquedas/busquedaAVendedor')->with('vendedores',$consulta);
+
+        }else{
+            return redirect('/login');
+        }
+    }
+
+    public function buscarNombre(Request $request){
+        if(Auth::check()){
+            $nombre = $request->input('nombre');
+
+            $consulta = DB::table('vendedor')
+            ->select(DB::raw("id, CONCAT(nombre,' ',apellidoP,' ',apellidoM) as nombre, telefono, email")) 
+            ->where('nombre','like',"%".$nombre."%")
+            ->paginate(10);
+            return view('/Busquedas/busquedaAVendedor')->with('vendedores',$consulta);
+        }else{
+            return redirect('/login');
+        }
+    }
 }

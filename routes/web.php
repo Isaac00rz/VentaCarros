@@ -23,3 +23,8 @@ Route::get('/Vendedores',"VendedoresController@index");
 Route::get('/Vendedores/Alta',"VendedoresController@formularioAlta");
 Route::post('/Altas/Vendedor/altaVendedor',"VendedoresController@altaVendedor");
 Route::get('/Vendedores/BajaMod',"VendedoresController@busqueda");
+Route::get('/Vendedores/Editar/{idVendedor}',"VendedoresController@formularioMod");
+Route::post('/Modificar/Vendedor/editarVendedor',"VendedoresController@editarVendedor");
+Route::get('/Vendedores/Eliminar/{idVendedor}',"VendedoresController@eliminar");
+Route::get('/Vendedores/Buscar',"VendedoresController@buscarTodo");
+Route::post('/Vendedores/buscarNombre',"VendedoresController@buscarNombre");

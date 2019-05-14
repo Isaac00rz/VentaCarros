@@ -13,7 +13,7 @@
         <br>
         <hr>
         <p>Busqueda Vendedores</p>
-        <a href="">Busqueda</a>
+        <a href="{{url('/Vendedores/Buscar')}}">Busqueda</a>
         <br>
         <hr>
     </fieldset>
