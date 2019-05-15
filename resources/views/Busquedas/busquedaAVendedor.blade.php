@@ -7,7 +7,7 @@
     <div id="Busqueda" class= "Busqueda">
 
         <form id = "Busqueda" role="form" method="post" action="{{ url('/Vendedores/buscarNombre') }}">
-            {!! csrf_field() !!}
+            @csrf
             <legend>Búsqueda</legend>
             <p>
                 <label for ="nombre">Nombre Vendedor:</label> 

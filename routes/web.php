@@ -26,3 +26,8 @@ Route::post('/Modificar/Vendedor/editarVendedor',"VendedoresController@editarVen
 Route::get('/Vendedores/Eliminar/{idVendedor}',"VendedoresController@eliminar");
 Route::get('/Vendedores/Buscar',"VendedoresController@buscarTodo");
 Route::post('/Vendedores/buscarNombre',"VendedoresController@buscarNombre");
+
+Route::get('/Cotizacion',"CotizacionController@index");
+Route::get('/Cotizacion/Alta',"CotizacionController@formulario");
+Route::post('/Cotizacion/Alta/altaCotizacion',"CotizacionController@altaCotizacion");
+Route::post('/Cotizacion/Generar/PDF',"CotizacionController@generarPDF");
