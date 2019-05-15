@@ -8,7 +8,7 @@
             {{ session()->get('message') }} 
         @endif 
         <form role="form" name="form" method="post" action="{{ url('/Altas/Vendedor/altaVendedor') }}">
-            {!! csrf_field() !!}
+        @csrf
                     <table border="1" id="tab" style="display:inline-block;">
                         <tr id="cabecera">
                             <td class="tds">Nombre</td>
