@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ asset('css/cotizacion.css') }}">
 <title>Alta Ventas</title>
 <div class="contenido">
-    <form id = "alta" name = "alta" action="{{url('/Venta/Alta/altaVenta')}}" method="post">
+    <form id = "alta" name = "alta" action="{{url('/Ventas/Alta/altaVenta')}}" method="post">
         @csrf
         <fieldset>
             <legend>Alta Ventas</legend>

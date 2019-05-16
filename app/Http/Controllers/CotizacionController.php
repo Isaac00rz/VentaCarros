@@ -259,7 +259,7 @@ class CotizacionController extends Controller
     }
 
     public function editarCotizacion(Request $request){
-        $id = $request->input('id');
+        $id = $request->input('idCotizacion');
         $cliente = $request->input('nombre');
         $auto = $request->input('auto');
         $fechaA = $request->input('fecha');

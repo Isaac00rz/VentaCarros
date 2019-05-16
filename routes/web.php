@@ -38,10 +38,17 @@ Route::get('/Cotizacion/Busqueda/{id}',"CotizacionController@busquedaVer");
 Route::get('/Cotizacion/ModBaja',"CotizacionController@busqueda");
 Route::get('/Cotizacion/Editar/{id}',"CotizacionController@editar");
 Route::post('/Cotizacion/Editar/editarCotizacion',"CotizacionController@editarCotizacion");
-Route::get('/Cotizacion/Editar/{id}',"CotizacionController@editar");
 Route::get('/Cotizacion/Eliminar/{id}',"CotizacionController@eliminar");
 
 Route::get('/Ventas',"VentasController@index");
 Route::get('/Ventas/Alta',"VentasController@formulario");
 Route::post('/Ventas/Alta/altaVenta',"VentasController@altaCotizacion");
 Route::post('/Ventas/Generar/PDF',"VentasController@generarPDF");
+Route::get('/Ventas/Busqueda',"VentasController@busquedaA");
+Route::post('/Ventas/buscarCliente',"VentasController@buscarCliente");
+Route::post('/Ventas/Busqueda/buscarCliente',"VentasController@buscarCliente2");
+Route::get('/Ventas/Busqueda/{id}',"VentasController@busquedaVer");
+Route::get('/Ventas/ModBaja',"VentasController@busqueda");
+Route::get('/Ventas/Editar/{id}',"VentasController@editar");
+Route::post('/Ventas/Editar/editarVenta',"VentasController@editarVenta");
+Route::get('/Cotizacion/Eliminar/{id}',"CotizacionController@eliminar");
