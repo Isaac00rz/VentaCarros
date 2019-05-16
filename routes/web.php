@@ -33,7 +33,10 @@ Route::post('/Cotizacion/Alta/altaCotizacion',"CotizacionController@altaCotizaci
 Route::post('/Cotizacion/Generar/PDF',"CotizacionController@generarPDF");
 Route::get('/Cotizacion/Busqueda',"CotizacionController@busquedaA");
 Route::post('/Cotizacion/buscarCliente',"CotizacionController@buscarCliente");
+Route::post('/Cotizacion/Busqueda/buscarCliente',"CotizacionController@buscarCliente2");
 Route::get('/Cotizacion/Busqueda/{id}',"CotizacionController@busquedaVer");
 Route::get('/Cotizacion/ModBaja',"CotizacionController@busqueda");
 Route::get('/Cotizacion/Editar/{id}',"CotizacionController@editar");
 Route::post('/Cotizacion/Editar/editarCotizacion',"CotizacionController@editarCotizacion");
+Route::get('/Cotizacion/Editar/{id}',"CotizacionController@editar");
+Route::get('/Cotizacion/Eliminar/{id}',"CotizacionController@eliminar");

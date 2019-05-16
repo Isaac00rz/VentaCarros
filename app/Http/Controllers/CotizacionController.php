@@ -167,6 +167,16 @@ class CotizacionController extends Controller
             ->paginate(15);
         return view('Busquedas/busquedaACotizacion')->with('cotizaciones',$consulta);
     }
+    public function buscarCliente2(Request $request){
+        $nombre = $request->input('nombre');
+        $consulta = DB::table('cotizaciones')
+            ->join('auto','auto.id','=','cotizaciones.idauto')
+            ->join('cliente','cliente.rfc','=','cotizaciones.idcliente')
+            ->select(DB::raw("cotizaciones.id, cliente.nombre as cliente, CONCAT(auto.marca,'-',auto.nombre,'-',auto.modelo) as auto, cotizaciones.fecha, cotizaciones.importe"))
+            ->where('cliente.nombre','like','%'.$nombre.'%')
+            ->paginate(15);
+        return view('Busquedas/busquedaCotizacion')->with('cotizaciones',$consulta);
+    }
 
     public function busquedaVer($idCotizacion){
         //Consulta
@@ -343,5 +353,12 @@ class CotizacionController extends Controller
 
         return view('Altas/altaCotizacionR')->with('plazos', count($datos))
         ->with('datos',$datos)->with('datosRaw',$datosRaw);
+    }
+
+    public function eliminar($idCotizacion){
+        $consulta = DB::table('cotizaciones')
+        ->where('id','=',$idCotizacion)
+        ->delte();
+        return redirect('/Cotizacion/ModBaja');
     }
 }

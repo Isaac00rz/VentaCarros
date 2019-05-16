@@ -6,7 +6,7 @@
 <section class="contenido">
     <div id="Busqueda" class= "Busqueda">
 
-        <form id = "Busqueda" role="form" method="post" action="{{ url('/Cotizacion/buscarCliente') }}">
+        <form id = "Busqueda" role="form" method="post" action="{{ url('/Cotizacion/buscarCliente2') }}">
             @csrf
             <legend>Búsqueda</legend>
             <p>
