@@ -38,10 +38,10 @@ CREATE TABLE Venta (
     Descuento Double,
     Enganche Double NOT NULL,
     Plazos Integer NOT NULL,
-    Interes Double,
     Fecha Date NOT NULL,
     Tasa Double,
     Comision Double,
+    Importe Double,
     FOREIGN KEY (IdVendedor) REFERENCES Vendedor(Id),
     FOREIGN KEY (IdCliente) REFERENCES Cliente(RFC),
     FOREIGN KEY (IdAuto) REFERENCES Auto(Id)
@@ -69,6 +69,7 @@ CREATE TABLE Cotizaciones (
     Interes Double,
     Tasa Double,
     Comision Double,
+    Importe Double,
     FOREIGN KEY (IdVendedor) REFERENCES Vendedor(Id),
     FOREIGN KEY (IdCliente) REFERENCES Cliente(RFC),
     FOREIGN KEY (IdAuto) REFERENCES Auto(Id)

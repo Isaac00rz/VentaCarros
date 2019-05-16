@@ -40,3 +40,8 @@ Route::get('/Cotizacion/Editar/{id}',"CotizacionController@editar");
 Route::post('/Cotizacion/Editar/editarCotizacion',"CotizacionController@editarCotizacion");
 Route::get('/Cotizacion/Editar/{id}',"CotizacionController@editar");
 Route::get('/Cotizacion/Eliminar/{id}',"CotizacionController@eliminar");
+
+Route::get('/Ventas',"VentasController@index");
+Route::get('/Ventas/Alta',"VentasController@formulario");
+Route::post('/Ventas/Alta/altaVenta',"VentasController@altaCotizacion");
+Route::post('/Ventas/Generar/PDF',"VentasController@generarPDF");

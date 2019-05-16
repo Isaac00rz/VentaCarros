@@ -358,7 +358,7 @@ class CotizacionController extends Controller
     public function eliminar($idCotizacion){
         $consulta = DB::table('cotizaciones')
         ->where('id','=',$idCotizacion)
-        ->delte();
+        ->delete();
         return redirect('/Cotizacion/ModBaja');
     }
 }
