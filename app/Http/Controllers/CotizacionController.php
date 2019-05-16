@@ -148,6 +148,15 @@ class CotizacionController extends Controller
         return view('Busquedas/busquedaACotizacion')->with('cotizaciones',$consulta);
     }
 
+    public function busqueda(){
+        $consulta = DB::table('cotizaciones')
+            ->join('auto','auto.id','=','cotizaciones.idauto')
+            ->join('cliente','cliente.rfc','=','cotizaciones.idcliente')
+            ->select(DB::raw("cotizaciones.id, cliente.nombre as cliente, CONCAT(auto.marca,'-',auto.nombre,'-',auto.modelo) as auto, cotizaciones.fecha, cotizaciones.importe"))
+            ->paginate(15);
+        return view('Busquedas/busquedaCotizacion')->with('cotizaciones',$consulta);
+    }
+
     public function buscarCliente(Request $request){
         $nombre = $request->input('nombre');
         $consulta = DB::table('cotizaciones')
@@ -217,6 +226,120 @@ class CotizacionController extends Controller
         $datosRaw[] = $nombreVendedor;
         $datosRaw[] = $nombreAuto;
         $datosRaw[] = $nombreCliente;
+
+        return view('Altas/altaCotizacionR')->with('plazos', count($datos))
+        ->with('datos',$datos)->with('datosRaw',$datosRaw);
+    }
+
+    public function editar($idCotizacion){
+        $consulta = DB::table('cliente')
+        ->select('rfc','nombre')
+        ->get();
+        $consulta2 = DB::table('auto')
+        ->select(DB::raw("id, CONCAT(id+'-'+marca,'-',nombre,'-',modelo) as nombre"))
+        ->get();
+        $consulta3 = DB::table('cotizaciones')
+            ->join('auto','auto.id','=','cotizaciones.idauto')
+            ->join('cliente','cliente.rfc','=','cotizaciones.idcliente')
+            ->join('vendedor','cotizaciones.idVendedor','=','vendedor.id')
+            ->select(DB::raw("cotizaciones.id, cliente.rfc as rfc,auto.id as auto,vendedor.id as vendedor, cotizaciones.fecha, cotizaciones.importe, descuento, enganche, plazos,tasa,comision"))
+            ->where('cotizaciones.id','=',$idCotizacion)
+            ->get();
+        return view('/Modificacion/modificarCotizacion')->with('datos',$consulta3)->with('clientes',$consulta)->with('autos',$consulta2);
+    }
+
+    public function editarCotizacion(Request $request){
+        $id = $request->input('id');
+        $cliente = $request->input('nombre');
+        $auto = $request->input('auto');
+        $fechaA = $request->input('fecha');
+        $fechaN = explode('-', $fechaA);
+        $importe = $request->input('importe');
+        $descuento = $request->input('descuento');
+        $enganche = $request->input('enganche');
+        $plazos = $request->input('plazo');
+        $taza = $request->input('taza');
+        $comision = $request->input('comision');
+        $idUser = Auth::id();
+        $nombreVendedor = "";
+        $nombreAuto = "";
+        $nombreCliente = "";
+
+        //Consulta
+        $usuario  = DB::table('users')
+        ->select('email')
+        ->where('id','=',$idUser)
+        ->get();
+
+        foreach($usuario as $v){
+            $email = $v->email;
+        }
+        $vendedor = DB::table('vendedor')
+            ->select(DB::raw("CONCAT(nombre,' ',apellidoP,' ',apellidoM) as nombre, id"))
+            ->where('email','=',$email)
+            ->get();
+        $autos = DB::table('auto')
+            ->select(DB::raw("CONCAT(id+'-'+marca,'-',nombre,'-',modelo) as nombre"))
+            ->where('id','=',$auto)
+            ->get();   
+        $clientes = DB::table('cliente')
+            ->select('nombre')
+            ->where('rfc','=',$cliente)
+            ->get(); 
+        foreach($vendedor as $v){
+            $idVendedor = $v->id;
+            $nombreVendedor = $v->nombre;
+        }
+        foreach($autos as $v){
+            $nombreAuto = $v->nombre;
+        }
+        foreach($clientes as $v){
+            $nombreCliente = $v->nombre;
+        }
+        //Edicion
+        $consulta = DB::table('cotizaciones')
+            ->where('id','=',$id)
+            ->update(['idauto'=> $auto,
+            'idvendedor'=>$idVendedor,'idcliente' => $cliente,
+            'fecha'=>$fechaA,'descuento'=>$descuento,'enganche'=>$enganche,
+            'plazos'=>$plazos,'tasa'=>$taza,'comision'=>$comision,'importe'=>$importe]);
+        
+        //Calculos
+        $fecha = Carbon::now();
+        $fecha->setYear($fechaN[0]);
+        $fecha->setMonth($fechaN[1]);
+        $fecha->setDay($fechaN[2]);
+        $abono = 0.0;
+        $abono2 = 0.0;
+        $interes = 0.0;
+        $mensualidad = 0.0;
+        $fecha->addMonth(1);
+        $importe = ($importe-$descuento)*(1+($comision/100));
+        $importeEn = $importe * ($enganche/100);
+        $saldo  = $importe-$importeEn;
+        $abono = $saldo/$plazos;
+        
+        for($i = 0;$i<$plazos;$i++){
+            $fecha->addMonth(1);
+            $datos[] = $i+1;
+            $datos[] = $fecha->format('d-m-Y');
+            $interes = ($saldo * ($taza/100))/$plazos;
+            $mensualidad = $abono+$interes;
+            $saldo = $saldo - $abono;
+            if($saldo<0){
+                $saldo = 0;
+            }
+            $datos[] = round($abono,2);
+            $datos[] = round($interes,2);
+            $datos[] = round($mensualidad,2);
+            $datos[] = round($saldo,2);
+            
+        }
+        $datosRaw[] = $nombreVendedor;
+        $datosRaw[] = $nombreAuto;
+        $datosRaw[] = $nombreCliente;
+
+
 
         return view('Altas/altaCotizacionR')->with('plazos', count($datos))
         ->with('datos',$datos)->with('datosRaw',$datosRaw);

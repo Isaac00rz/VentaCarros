@@ -8,6 +8,10 @@
         <a href="{{ url('/Cotizacion/Alta')}}">Generar</a>
         <br>
         <hr>
+        <p>Mod/Baja Cotizaciones</p>
+        <a href="{{url('/Cotizacion/ModBaja')}}">Ver</a>
+        <br>
+        <hr>
         <p>Busqueda Cotizaciones</p>
         <a href="{{url('/Cotizacion/Busqueda')}}">Busqueda</a>
         <br>

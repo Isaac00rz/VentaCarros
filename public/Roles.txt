@@ -1,7 +1,7 @@
-Vendedores -	Ulises
+Vendedores -	Ulises--    listo
 Autos-		Isaac
 Clientes-	Giovanna
-Cotizacion-	Ulises
-Venta-		?
-Cobranza-	?
+Cotizacion-	Ulises---   listo
+Venta-		??--- ya casi
+Cobranza-	Isaac
 Reportes-	Ulises
