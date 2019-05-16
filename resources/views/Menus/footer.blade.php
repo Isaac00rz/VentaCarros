@@ -5,15 +5,16 @@
 		<div class="addressCampus">
 			<h4 style="color:green;">Autor</h4>
 			<p>
-				Isaac Ulises Hernandez Marquez.
-				Isaac Perez Segura.
-				Giovanna Estefania Alvizo Juarez, Estudiantes del Instituto Tecnologico de León
+				Giovanna Estefania Alvizo Orozco,
+				Isaac Ulises Hernandez Marquez,
+				Isaac Perez Segura,
+				Estudiantes del Instituto Tecnologico de León
 			</p>
 		</div>
 		<div class="addressCampus">
 			<h4 style="color:green;">Institucion</h4>
 			<p>
-				Institucion titular del proyecto
+				Venta de Carros
 			</p>
 		</div>
 	</div>
@@ -21,9 +22,9 @@
 		<p>
 			Sitio oficial del Instituto  
 			<a style="color:#8E8CFF; text-decoration:none;" href="http://www.itleon.edu.mx" target="_blank">
-				http://www.itleon.edu.mx
+				http://www.VentaCarros.com
 			</a>
-			<br>E-mail: tecleon@itleon.edu.mx
+			<br>E-mail: ventaCarros@hotmail.com
 			<a style="color:#8E8CFF; text-decoration:none;" href="https://www.facebook.com/OficialITLeon/" target="_blank">
 				<img id="facebookIco" src="{{asset('images/icons/facebook.ico')}}"/>
 			</a>
