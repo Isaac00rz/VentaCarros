@@ -31,3 +31,6 @@ Route::get('/Cotizacion',"CotizacionController@index");
 Route::get('/Cotizacion/Alta',"CotizacionController@formulario");
 Route::post('/Cotizacion/Alta/altaCotizacion',"CotizacionController@altaCotizacion");
 Route::post('/Cotizacion/Generar/PDF',"CotizacionController@generarPDF");
+Route::get('/Cotizacion/Busqueda',"CotizacionController@busquedaA");
+Route::post('/Cotizacion/buscarCliente',"CotizacionController@buscarCliente");
+Route::get('/Cotizacion/Busqueda/{id}',"CotizacionController@busquedaVer");

@@ -9,7 +9,7 @@
         <br>
         <hr>
         <p>Busqueda Cotizaciones</p>
-        <a href="{{url('/Cotizacion/Buscar')}}">Busqueda</a>
+        <a href="{{url('/Cotizacion/Busqueda')}}">Busqueda</a>
         <br>
         <hr>
     </fieldset>
