@@ -11,7 +11,7 @@
         <ul id="navigation">
             <li class="home"><a href="{{ url('/home') }}" title="Home"></a></li>
             <li class="about"><a href="{{ url('/Vendedores') }}" title="Vendedores"></a></li>
-            <li class="search"><a href="{{ url('/')}}" title="Clientes"></a></li>
+            <li class="search"><a href="{{ url('/Clientes')}}" title="Clientes"></a></li>
             <li class="rssfeed"><a href="{{ url('/') }}" title="Autos"></a></li>
             <li class="podcasts"><a href="{{ url('/Cotizacion')}}" title="Cotización"></a></li>
             <li class="venta"><a href="{{ url('/Ventas')}}" title="Venta"></a></li>

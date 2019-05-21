@@ -27,6 +27,16 @@ Route::get('/Vendedores/Eliminar/{idVendedor}',"VendedoresController@eliminar");
 Route::get('/Vendedores/Buscar',"VendedoresController@buscarTodo");
 Route::post('/Vendedores/buscarNombre',"VendedoresController@buscarNombre");
 
+Route::get('/Clientes',"ClienteController@index");
+Route::get('/Clientes/Alta',"ClienteController@formularioAlta");
+Route::post('/Altas/Cliente/altaCliente',"ClienteController@altaCliente");
+Route::get('/Clientes/BajaMod',"ClienteController@busqueda");
+Route::get('/Clientes/Editar/{idCliente}',"ClienteController@formularioMod");
+Route::post('/Modificar/Cliente/editarCliente',"ClienteController@editarCliente");
+Route::get('/Clientes/Eliminar/{idCliente}',"ClienteController@eliminar");
+Route::get('/Clientes/Buscar',"ClienteController@buscarTodo");
+Route::post('/Clientes/buscarNombre',"ClienteController@buscarNombre");
+
 Route::get('/Cotizacion',"CotizacionController@index");
 Route::get('/Cotizacion/Alta',"CotizacionController@formulario");
 Route::post('/Cotizacion/Alta/altaCotizacion',"CotizacionController@altaCotizacion");
