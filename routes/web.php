@@ -52,3 +52,10 @@ Route::get('/Ventas/ModBaja',"VentasController@busqueda");
 Route::get('/Ventas/Editar/{id}',"VentasController@editar");
 Route::post('/Ventas/Editar/editarVenta',"VentasController@editarVenta");
 Route::get('/Cotizacion/Eliminar/{id}',"CotizacionController@eliminar");
+
+// Auto
+
+Route::get('/Autos','autoController@index');
+Route::get('/Autos/Alta',"autoController@formularioAlta");
+Route::get('/Autos/BajaMod',"autoController@busqueda");
+Route::get('/Autos/Buscar',"autoController@buscarTodo");
