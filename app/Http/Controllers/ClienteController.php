@@ -24,18 +24,25 @@ class ClienteController extends Controller
         $array_nombre = $request->input('nombre');
         $array_calle = $request->input('calle');
         $array_noExt = $request->input('noExterior');
-        $array_noInt = $request->input('noInterior','0');
+        $array_noInt = $request->input('noInterior');
         $array_colonia = $request->input('colonia');
         $array_ciudad = $request->input('ciudad');
         $array_estado = $request->input('estado');
         $contador = 0;
         $registros = count($array_nombre);
-
+        
         foreach($array_nombre as $i=>$t) {
             $consulta = DB::table('cliente')
-            ->insert(['rfc'=> $array_rfc[$i],'nombre'=> $array_nombre[$i],
-            'calle'=> $array_calle[$i],'noExterior'=> $array_noExt[$i],'noInterior'=> $array_noInt[$i],
-            'colonia'=>$array_colonia[$i],'ciudad'=>$array_ciudad[$i],'estado'=> $array_estado[$i]]);
+            ->insert([
+            'rfc'=> $array_rfc[$i],
+            'nombre'=> $array_nombre[$i],
+            'calle'=> $array_calle[$i],
+            'noExterior'=> $array_noExt[$i],
+            'noInterior'=> $array_noInt[$i],
+            'colonia'=>$array_colonia[$i],
+            'ciudad'=>$array_ciudad[$i],
+            'estado'=> $array_estado[$i]
+            ]);
 
             $contador++;
         }
