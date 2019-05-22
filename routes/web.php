@@ -76,3 +76,10 @@ Route::post('/Modificar/Auto/editarAuto',"autoController@editarAuto");
 
 Route::get('/Autos/Buscar',"autoController@buscarTodo");
 Route::post('/Autos/buscarNombre',"autoController@buscarNombre");
+
+
+// Cobranza
+
+Route::get('/Cobranza','CobranzaController@index');
+Route::post('/Cobranza/BusquedaCliente','CobranzaController@buscarCliente');
+Route::get('/Cobranza/BusquedaCompra/{rfc}','CobranzaController@buscarCompras');
