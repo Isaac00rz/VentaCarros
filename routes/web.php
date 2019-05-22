@@ -62,3 +62,24 @@ Route::get('/Ventas/ModBaja',"VentasController@busqueda");
 Route::get('/Ventas/Editar/{id}',"VentasController@editar");
 Route::post('/Ventas/Editar/editarVenta',"VentasController@editarVenta");
 Route::get('/Cotizacion/Eliminar/{id}',"CotizacionController@eliminar");
+
+// Auto
+
+Route::get('/Autos','autoController@index');
+Route::get('/Autos/Alta',"autoController@formularioAlta");
+Route::post('/Altas/Auto/altaAuto','autoController@altaAuto');
+
+Route::get('/Autos/BajaMod',"autoController@busqueda");
+Route::get('/Autos/Eliminar/{idVendedor}',"autoController@eliminar");
+Route::get('/Autos/Editar/{idVendedor}',"autoController@formularioMod");
+Route::post('/Modificar/Auto/editarAuto',"autoController@editarAuto");
+
+Route::get('/Autos/Buscar',"autoController@buscarTodo");
+Route::post('/Autos/buscarNombre',"autoController@buscarNombre");
+
+
+// Cobranza
+
+Route::get('/Cobranza','CobranzaController@index');
+Route::post('/Cobranza/BusquedaCliente','CobranzaController@buscarCliente');
+Route::get('/Cobranza/BusquedaCompra/{rfc}','CobranzaController@buscarCompras');

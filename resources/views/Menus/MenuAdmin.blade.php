@@ -12,10 +12,10 @@
             <li class="home"><a href="{{ url('/home') }}" title="Home"></a></li>
             <li class="about"><a href="{{ url('/Vendedores') }}" title="Vendedores"></a></li>
             <li class="search"><a href="{{ url('/Clientes')}}" title="Clientes"></a></li>
-            <li class="rssfeed"><a href="{{ url('/') }}" title="Autos"></a></li>
+            <li class="rssfeed"><a href="{{ url('/Autos') }}" title="Autos"></a></li>
             <li class="podcasts"><a href="{{ url('/Cotizacion')}}" title="Cotización"></a></li>
             <li class="venta"><a href="{{ url('/Ventas')}}" title="Venta"></a></li>
-            <li class="cobranza"><a href="{{ url('/')}}" title="Cobranza"></a></li>
+            <li class="cobranza"><a href="{{ url('/Cobranza')}}" title="Cobranza"></a></li>
             <li class="reportes"><a href="{{ url('/')}}" title="Reportes"></a></li>
             <li class="contact"><a href="{{ route('logout') }}" title="Salir"
                 onclick="event.preventDefault();
