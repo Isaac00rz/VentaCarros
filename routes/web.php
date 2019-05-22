@@ -67,5 +67,12 @@ Route::get('/Cotizacion/Eliminar/{id}',"CotizacionController@eliminar");
 
 Route::get('/Autos','autoController@index');
 Route::get('/Autos/Alta',"autoController@formularioAlta");
+Route::post('/Altas/Auto/altaAuto','autoController@altaAuto');
+
 Route::get('/Autos/BajaMod',"autoController@busqueda");
+Route::get('/Autos/Eliminar/{idVendedor}',"autoController@eliminar");
+Route::get('/Autos/Editar/{idVendedor}',"autoController@formularioMod");
+Route::post('/Modificar/Auto/editarAuto',"autoController@editarAuto");
+
 Route::get('/Autos/Buscar',"autoController@buscarTodo");
+Route::post('/Autos/buscarNombre',"autoController@buscarNombre");

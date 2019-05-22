@@ -3,11 +3,11 @@
 <title>Alta Vendedor</title>
 <div class="contenido">
     <fieldset>
-        <legend>Alta Vendedor</legend>
+        <legend>Alta Autos</legend>
         @if(session()->has('message')) 
             {{ session()->get('message') }} 
         @endif 
-        <form role="form" name="form" method="post" action="{{ url('/Altas/Vendedor/altaVendedor') }}">
+        <form role="form" name="form" method="post" action="{{ url('/Altas/Auto/altaAuto') }}">
         @csrf
                     <table border="1" id="tab" style="display:inline-block;">
                         <tr id="cabecera">
@@ -24,7 +24,6 @@
                             <td class="tds"><input class="inputs" type="tel" name="precio[]" maxlength="10" placeholder="Precio" required></td>
                             <td class="tds"><input class="inputs" type="reset" class="noEliminar" value="Eliminar" /></td>
                         </tr>
-            
                     </table>
                     <button id="add" type="button" ><b>Añadir registro</b></button>
                     <button id="aceptar" name="aceptar" type="submit"><b>Insertar registros</b></button>
@@ -32,7 +31,7 @@
             </fieldset>
 </div>
 <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
-<script src="{{ asset('js/tablaVendedor.js') }}"></script>
+<script src="{{ asset('js/tablaAuto.js') }}"></script>
 </body>
 @include('Menus.footer')
 </html>
