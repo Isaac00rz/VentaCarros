@@ -6,7 +6,7 @@
 <title>Clientes</title>
 <section class="contenido">
     <fieldset>
-        <legend>Compras <?php echo($nombre[0]->nombre) ?></legend>
+        <legend>Pagos <?php echo($nombre[0]->nombre) ?></legend>
         <table id="tabla" cellpadding = "0" cellspacing="0">
             <thead>
             <tr>

@@ -39,4 +39,14 @@ class CobranzaController extends Controller
             ->get();
         return view('/Menus/comprasCliente')->with('compras',$consulta)->with('nombre',$consultaName);
     }
+    
+    public function redirectToPagos($idVenta){
+        $getDate = DB::table('venta')
+            ->where('id','=',$idVenta)
+            ->select('fecha')
+            ->get();
+        $fechaInicial = $getDate[0]->fecha;
+        
+        return view('/Menus/prueba')->with('fechaInicial',$fechaInicial);
+    }
 }
