@@ -52,7 +52,9 @@ CREATE TABLE Pago(
     IdCliente varchar(50) NOT NULL,
     IdVenta Integer NOT NULL,
     Fecha Date,
-    Importe Double,
+    Mensualidad Double,
+    InteresImporte Double,
+    DiasRetraso int,
     FOREIGN KEY (IdCliente) REFERENCES Cliente(RFC),
     FOREIGN KEY (IdVenta) REFERENCES Venta(Id)
 );

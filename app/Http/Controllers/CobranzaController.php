@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CobranzaController extends Controller
 {
@@ -39,14 +40,63 @@ class CobranzaController extends Controller
             ->get();
         return view('/Menus/comprasCliente')->with('compras',$consulta)->with('nombre',$consultaName);
     }
-    
+    /*
+        eq() equals
+        ne() not equals
+        gt() greater than
+        gte() greater than or equals
+        lt() less than
+        lte() less than or equals
+    */
     public function redirectToPagos($idVenta){
-        $getDate = DB::table('venta')
+        $consulta = DB::table('venta')
+            ->select('fecha','plazos','tasa','importe')
             ->where('id','=',$idVenta)
-            ->select('fecha')
             ->get();
-        $fechaInicial = $getDate[0]->fecha;
+        $fechaVenta = $consulta[0]->fecha;
+        $plazos = $consulta[0]->plazos;
+        $fechaPago = new Carbon($fechaVenta);
+        $fechaActual = Carbon::now();
+        $mensualidad = ($consulta[0]->importe)/$plazos;
+        $importeTasa = (($consulta[0]->tasa)/100)*($mensualidad);
+        for($cont=0;$cont<$plazos;$cont++){
+            $fechaPago->addMonth(1);
+            $consulta = DB::table('pago')
+                ->select('fecha','mensualidad','interesImporte','diasRetraso')
+                ->where([
+                    ['idVenta','=',$idVenta],
+                    ['fecha','=',$fechaPago->toDateString()],
+                ])
+                ->get();
+            
+            if(count($consulta)>0){
+                $fecha[] = $fechaPago->toDateString();
+                $mensualidades[] = $consulta[0]->mensualidad;
+                $intereses[] = $consulta[0]->interesImporte;
+                $diasRetraso[] = $consulta[0]->diasRetraso;
+                $estado[] = "Pagado";
+            }else if($fechaPago->lt($fechaActual)){
+                $fecha[] = $fechaPago->toDateString();
+                $mensualidades[] = $mensualidad;
+                $intereses[] = $importeTasa+(50*($fechaPago->diffInDays($fechaActual)));
+                $diasRetraso[] = $fechaPago->diffInDays($fechaActual);
+                $estado[] = "Pago con retraso";
+            }else if($fechaPago->gt($fechaActual)){
+                $fecha[] = $fechaPago->toDateString();
+                $mensualidades[] = $mensualidad;
+                $intereses[] = $importeTasa;
+                $diasRetraso[] = 0;
+                $estado[] = "Proximo";
+            }
+        }
         
-        return view('/Menus/prueba')->with('fechaInicial',$fechaInicial);
+
+        return view('/Menus/prueba')
+            ->with('fechas',$fecha)
+            ->with('mensualidades',$mensualidades)
+            ->with('intereses',$intereses)
+            ->with('diasRetraso',$diasRetraso)
+            ->with('estados',$estado)
+            ->with('pruebas',$mensualidad);
     }
 }
