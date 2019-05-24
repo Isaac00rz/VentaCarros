@@ -25,8 +25,8 @@
                             <td class="tds"><input class="inputs" type="text" name="rfc" maxlength = "50" placeholder="RFC" value="{{$cliente->rfc}}" required></td>
                             <td class="tds"><input class="inputs" type="text" name="nombre" maxlength = "150" placeholder="Nombre" value="{{$cliente->nombre}}" required></td>
                             <td class="tds"><input class="inputs" type="text" name="calle" maxlength="150" placeholder="Calle" value="{{$cliente->calle}}" required></td>
-                            <td class="tds"><input class="inputs" type="number" name="noExt" maxlength="10" placeholder="No Exterior" value="{{$cliente->noExt}}" required></td>
-                            <td class="tds"><input class="inputs" type="number" name="noInt" maxlength="10" placeholder="No Interior" value="{{$cliente->noInt}}" required></td>
+                            <td class="tds"><input class="inputs" type="number" name="noExterior" maxlength="10" placeholder="No Exterior" value="{{$cliente->noExterior}}" required></td>
+                            <td class="tds"><input class="inputs" type="number" name="noInterior" maxlength="10" placeholder="No Interior" value="{{$cliente->noInterior}}" required></td>
                             <td class="tds"><input class="inputs" type="text" name="colonia" maxlength="150" placeholder="Colonia" value="{{$cliente->colonia}}" required></td>
                             <td class="tds"><input class="inputs" type="text" name="ciudad" maxlength="150" placeholder="Ciudad" value="{{$cliente->ciudad}}" required></td>
                             <td class="tds"><input class="inputs" type="text" name="colonia" maxlength="150" placeholder="Estado" value="{{$cliente->estado}}" required></td>

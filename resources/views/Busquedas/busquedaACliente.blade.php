@@ -37,8 +37,8 @@
                 <td>{{$cliente->rfc}}</td>
                 <td>{{$cliente->nombre}}</td>
                 <td>{{$cliente->calle}}</td>
-                <td>{{$cliente->noExt}}</td>
-                <td>{{$cliente->noInt}}</td>
+                <td>{{$cliente->noExterior}}</td>
+                <td>{{$cliente->noInterior}}</td>
                 <td>{{$cliente->colonia}}</td>
                 <td>{{$cliente->ciudad}}</td>
                 <td>{{$cliente->estado}}</td>

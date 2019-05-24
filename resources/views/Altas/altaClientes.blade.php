@@ -15,7 +15,7 @@
                             <td class="tds">Nombre</td>
                             <td class="tds">Calle</td>
                             <td class="tds">No Exterior</td>
-                            <td class="tds">No interior</td>
+                            <td class="tds">No Interior</td>
                             <td class="tds">Colonia</td>
                             <td class="tds">Ciudad</td>
                             <td class="tds">Estado</td>
@@ -26,7 +26,7 @@
                             <td class="tds"><input class="inputs" type="text" name="nombre[]" maxlength = "150" placeholder="Nombre" required></td>
                             <td class="tds"><input class="inputs" type="text" name="calle[]" maxlength="150" placeholder="Calle" required></td>
                             <td class="tds"><input class="inputs" type="number" name="noExterior[]" maxlength="10" placeholder="No Exterior" required></td>
-                            <td class="tds"><input class="inputs" type="number" name="noInterior[]" maxlength="10" placeholder="No Interior" required></td>
+                            <td class="tds"><input class="inputs" type="number" name="noInterior[]" maxlength="10" placeholder="No Interior" ></td>
                             <td class="tds"><input class="inputs" type="text" name="colonia[]" maxlength="150" placeholder="Colonia" required></td>
                             <td class="tds"><input class="inputs" type="text" name="ciudad[]" maxlength = "150" placeholder="Ciudad" required></td>
                             <td class="tds"><input class="inputs" type="text" name="estado[]" maxlength = "150" placeholder="Estado" required></td>
