@@ -40,6 +40,7 @@
                 </tr>
             @endforeach
         </table>
+        <h4></h4>
     </fieldset>
 <br>
 {{ $clientes->links('paginacion.paginacion') }}
