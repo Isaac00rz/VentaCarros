@@ -12,7 +12,6 @@
         <th>Nombre</th>
         <th>calle</th>	
         <th>No Exterior</th>	
-        <th>No Interior</th>
         <th>Colonia</th>
         <th>Ciudad</th>
         <th>Estado</th>
@@ -26,7 +25,6 @@
 		<td>{{$cliente->nombre}}</td>
         <td>{{$cliente->calle}}</td>
         <td>{{$cliente->noExterior}}</td>
-        <td>{{$cliente->noInterior}}</td>
         <td>{{$cliente->colonia}}</td>
         <td>{{$cliente->ciudad}}</td>
         <td>{{$cliente->estado}}</td>

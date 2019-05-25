@@ -77,7 +77,7 @@ class ClienteController extends Controller
         $colonia = $request->input('colonia');
         $ciudad = $request->input('ciudad');
         $estado = $request->input('estado');
-        $idCliente = $request->input('id');
+        $idCliente = $request->input('rfc');
 
         $consulta = DB::table('cliente')
             ->where('rfc','=',$idCliente)
@@ -101,7 +101,7 @@ class ClienteController extends Controller
         $consulta = DB::table('cliente')
             ->select(DB::raw("rfc, nombre, calle, noExterior, noInterior, colonia, ciudad, estado")) 
             ->paginate(10);
-        return view('/Busquedas/busquedaClientes')->with('clientes',$consulta);
+        return view('/Busquedas/busquedaACliente')->with('clientes',$consulta);
     }
 
     public function buscarNombre(Request $request){
@@ -111,6 +111,6 @@ class ClienteController extends Controller
             ->select(DB::raw("rfc, nombre, calle, noExterior, noInterior, colonia, ciudad, estado")) 
             ->where('nombre','like',"%".$nombre."%")
             ->paginate(10);
-        return view('/Busquedas/busquedaACliente')->with('cliente',$consulta);
+        return view('/Busquedas/busquedaACliente')->with('clientes',$consulta);
     }
 }
