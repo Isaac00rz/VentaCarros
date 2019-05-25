@@ -84,3 +84,4 @@ Route::get('/Cobranza','CobranzaController@index');
 Route::post('/Cobranza/BusquedaCliente','CobranzaController@buscarCliente');
 Route::get('/Cobranza/BusquedaCompra/{rfc}','CobranzaController@buscarCompras');
 Route::get('/Cobranza/Pagos/{id}','CobranzaController@redirectToPagos');
+Route::post('/Cobranza/Pagar','CobranzaController@pagar');

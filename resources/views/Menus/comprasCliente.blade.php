@@ -13,7 +13,7 @@
                 <th>No Compra</th>
                 <th>Auto</th>
                 <th>Importe</th>
-                <th>Enganche</th>	
+                <th>Pagado</th>	
                 <th>Estado</th>
                 <th>Acción</th>
             </tr>
@@ -24,7 +24,7 @@
                     <td>{{$compra->id}}</td>
                     <td>{{$compra->marca}}{{$compra->modelo}}{{$compra->nombre}}</td>
                     <td>{{$compra->importe}}</td>
-                    <td>{{$compra->enganche}}</td>
+                    <td>{{$compra->pagoTotal}}</td>
                     <td>
                         <?php 
                             if((($compra->importe) - ($compra->pagoTotal))<=0)
