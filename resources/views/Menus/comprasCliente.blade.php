@@ -13,8 +13,6 @@
                 <th>No Compra</th>
                 <th>Auto</th>
                 <th>Importe</th>
-                <th>Pagado</th>	
-                <th>Estado</th>
                 <th>Acción</th>
             </tr>
             </thead>
@@ -24,14 +22,6 @@
                     <td>{{$compra->id}}</td>
                     <td>{{$compra->marca}}{{$compra->modelo}}{{$compra->nombre}}</td>
                     <td>{{$compra->importe}}</td>
-                    <td>{{$compra->pagoTotal}}</td>
-                    <td>
-                        <?php 
-                            if((($compra->importe) - ($compra->pagoTotal))<=0)
-                                echo('Liquidado');
-                            else echo('Pendiente');
-                        ?>
-                    </td>
                     <td>
                         <a href="{{url('/Cobranza/Pagos',$compra->id)}}">Ver</a>
                     </td>

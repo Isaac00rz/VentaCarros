@@ -28,8 +28,7 @@ class CobranzaController extends Controller
     public function buscarCompras($rfc){
         $consulta = DB::table('venta')
             ->join('auto','auto.id','=','venta.idauto')
-            ->join('pago','pago.IdVenta','=','venta.id')
-            ->select('venta.id','auto.marca','auto.modelo','auto.nombre','venta.importe','venta.enganche',DB::raw('SUM(pago.mensualidad)as pagoTotal'))
+            ->select('venta.id','auto.marca','auto.modelo','auto.nombre','venta.importe','venta.enganche')
             ->where('venta.IdCliente','like','%'.$rfc.'%')
             ->groupBy('venta.id','auto.marca','auto.modelo','auto.nombre','venta.importe','venta.enganche')
             ->paginate(10);
@@ -146,8 +145,8 @@ class CobranzaController extends Controller
             ->insert(
             ['IdCliente'=>$idCliente,'idVenta'=>$idVenta,'Fecha'=>$fechaMensualidad,'Mensualidad'=>$mensualidad,'InteresImporte'=>$interes,'DiasRetraso'=>$diasRetrasoAdelanto]
         );
-        return view('/Altas/prueba')->with('prueba',$diasRetrasoAdelanto);
-        //return redirect("/Cobranza/Pagos/{$idVenta}");
+        //return view('/Altas/prueba')->with('prueba',$diasRetrasoAdelanto);
+        return redirect("/Cobranza/Pagos/{$idVenta}");
         
     }
 }
