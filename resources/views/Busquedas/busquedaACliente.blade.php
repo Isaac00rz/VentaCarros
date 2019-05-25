@@ -32,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($vendedores as $vendedor)
+            @foreach ($clientes as $cliente)
                 <tr>
                 <td>{{$cliente->rfc}}</td>
                 <td>{{$cliente->nombre}}</td>
@@ -47,7 +47,7 @@
         </table>
     </fieldset>
 <br>
-{{ $vendedores->links('paginacion.paginacion') }}
+{{ $clientes->links('paginacion.paginacion') }}
 </section> 
 </body>
 @include('Menus.footer')
