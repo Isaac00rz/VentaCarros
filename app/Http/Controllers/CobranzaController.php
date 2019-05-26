@@ -91,15 +91,15 @@ class CobranzaController extends Controller
             }else if($fechaPago->gt($fechaActual) 
                      || ($fechaPago->toDateString())==($fechaActual->toDateString())){
                 $fecha[] = $fechaPago->toDateString();
-                $mensualidades[] = $mensualidad;
-                $intereses[] = $importeTasa;
+                $mensualidades[] = round( $mensualidad,2);
+                $intereses[] = round( $importeTasa,2);
                 $diasRetraso[] = 0;
                 $estado[] = "Proximo";
                 $fechaPagos[]= "----";
             }else if($fechaPago->lt($fechaActual)){
                 $fecha[] = $fechaPago->toDateString();
-                $mensualidades[] = $mensualidad;
-                $intereses[] = $importeTasa+(50*($fechaPago->diffInDays($fechaActual)));
+                $mensualidades[] =  round($mensualidad,2);
+                $intereses[] = round($importeTasa+(50*($fechaPago->diffInDays($fechaActual))),2);
                 $diasRetraso[] = $fechaPago->diffInDays($fechaActual);
                 $estado[] = "Atrasado";
                 $fechaPagos[]= "----";

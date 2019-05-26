@@ -15,7 +15,8 @@
                 @endforeach    
             </select><br>
             <label for="auto">Auto: </label><br>
-            <select id="auto" name="auto" required>
+            <select id="auto" name="auto" required onchange="auto()">
+                <option value="...">...</option>
                 @foreach ($autos as $auto)
                     <option value="{{$auto->id}}"> {{$auto->nombre}}</option>
                 @endforeach   
@@ -37,6 +38,12 @@
     </form>
 </div>
 <script src="{{asset('js/cotizacion.js')}}"></script>
+<script>
+    function auto(){
+
+    }
+
+</script>
 </body>
 @include('Menus.footer')
 </html>
