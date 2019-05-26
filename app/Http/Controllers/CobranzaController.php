@@ -97,15 +97,15 @@ class CobranzaController extends Controller
             }else if($fechaPago->gt($fechaActual) 
                      || ($fechaPago->toDateString())==($fechaActual->toDateString())){
                 $fecha[] = $fechaPago->toDateString();
-                $mensualidades[] = round( $mensualidad,2);
-                $intereses[] = round( $importeTasa,2);
+                $mensualidades[] = $mensualidad;
+                $intereses[] = $importeTasa;
                 $diasRetraso[] = 0;
                 $estado[] = "Proximo";
                 $fechaPagos[]= "----";
             }else if($fechaPago->lt($fechaActual)){
                 $fecha[] = $fechaPago->toDateString();
-                $mensualidades[] =  round($mensualidad,2);
-                $intereses[] = round($importeTasa+(50*($fechaPago->diffInDays($fechaActual))),2);
+                $mensualidades[] = $mensualidad;
+                $intereses[] = $importeTasa+(50*($fechaPago->diffInDays($fechaActual)));
                 $diasRetraso[] = $fechaPago->diffInDays($fechaActual);
                 $estado[] = "Atrasado";
                 $fechaPagos[]= "----";
@@ -116,6 +116,7 @@ class CobranzaController extends Controller
             ->select('cliente.nombre')
             ->where('RFC','=',$idCliente)
             ->get();
+        
         return view('/Altas/cobranza')
             ->with('fechas',$fecha)
             ->with('mensualidades',$mensualidades)
@@ -126,7 +127,7 @@ class CobranzaController extends Controller
             ->with('nombreCliente',$nombreCliente[0]->nombre)
             ->with('fechaPagos',$fechaPagos)
             ->with('idVenta',$idVenta)
-            ->with('aPagar',($importe-$restante))
+            ->with('aPagar',round(($importe-$restante),2))
             ->with('putButtonPosition',$opcionPay);
         //return view('/Altas/prueba')->with('prueba',$fechaActual->toDateString());
     }

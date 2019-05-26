@@ -49,11 +49,11 @@
                 <tr>
 					<td>{{$cont+1}}</td>
                     <td>{{$fechas[$cont]}}</td>
-                    <td>${{$mensualidades[$cont]}}</td>
+                    <td>${{bcdiv($mensualidades[$cont],'1',2)}}</td>
                     <td>{{$diasRetraso[$cont]}}</td>
-                    <td>${{$intereses[$cont]}}</td>
+                    <td>${{bcdiv($intereses[$cont],'1',2)}}</td>
                     <td>{{$estados[$cont]}}</td>
-					<td>${{$mensualidades[$cont]+$intereses[$cont]}}</td>
+					<td>${{bcdiv($mensualidades[$cont]+$intereses[$cont],'1',2)}}</td>
                     <td>{{$fechaPagos[$cont]}}</td>
                     <?php 
                     if($cont==$putButtonPosition){ ?>
@@ -76,7 +76,7 @@
                 </tr>
             @endfor
         </table>
-        <h4>Saldo por pagar: {{$aPagar}}</h4>
+        <h4>Saldo por pagar: {{bcdiv($aPagar,'1',2)}}</h4>
     </fieldset>
 <br>
 </section> 
