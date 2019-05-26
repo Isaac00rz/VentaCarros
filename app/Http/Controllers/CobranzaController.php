@@ -13,14 +13,14 @@ class CobranzaController extends Controller
     
     public function index(){
         $consulta = DB::table('cliente')
-            ->select(DB::raw("RFC,nombre, CONCAT(ciudad,' ',estado,' ',colonia,' No Interior',NoInterior,' No Exterior',NoExterior,' ',calle)as direccion")) 
+            ->select(DB::raw("RFC,nombre, CONCAT('Colonia:',colonia,' No Exterior: ',NoExterior,' Calle:',calle)as direccion")) 
             ->paginate(10);
         return view('/Menus/cobranzaMenu')->with('clientes',$consulta);
     }
     public function buscarCliente(Request $request){
         $rfc = $request->input('rfc');
         $consulta = DB::table('cliente')
-            ->select(DB::raw("RFC,nombre, CONCAT(ciudad,' ',estado,' ',colonia,' No Interior',NoInterior,' No Exterior',NoExterior,' ',calle)as direccion"))
+            ->select(DB::raw("RFC,nombre, CONCAT('Colonia:',colonia,' No Exterior: ',NoExterior,' Calle:',calle)as direccion"))
             ->where('RFC','=',$rfc)
             ->paginate(10);
         return view('/Menus/cobranzaMenu')->with('clientes',$consulta);
@@ -58,9 +58,12 @@ class CobranzaController extends Controller
         $fechaPago = new Carbon($fechaVenta);
         $fechaActual = Carbon::now();
         $mensualidad = ($consulta[0]->importe)/$plazos;
-        $importeTasa = (($consulta[0]->tasa)/100)*($mensualidad);
-        $aPagar = $consulta[0]->importe;
+        $importe = $consulta[0]->importe;
+        $aPagar = $importe;
+        $tasa = (($consulta[0]->tasa)/100);
+        $importeTasa = 0;
         $restante = 0;
+        $opcionPay = 0;
         for($cont=0;$cont<$plazos;$cont++){
             $fechaPago->addMonth(1);
             $consulta = DB::table('pago')
@@ -70,10 +73,13 @@ class CobranzaController extends Controller
                     ['fecha','=',$fechaPago->toDateString()],
                 ])
                 ->get();
+            $importeTasa = $tasa*($aPagar);
+            $aPagar = $aPagar - $mensualidad;
             if(count($consulta)>0){
                 $fecha[] = $fechaPago->toDateString();
                 $mensualidades[] = $consulta[0]->mensualidad;
                 $restante = $restante+($consulta[0]->mensualidad);
+                $opcionPay = $opcionPay+1;
                 $intereses[] = $consulta[0]->interesImporte;
                 $fechaTemp = new Carbon($fechaPago);
                 
@@ -120,7 +126,8 @@ class CobranzaController extends Controller
             ->with('nombreCliente',$nombreCliente[0]->nombre)
             ->with('fechaPagos',$fechaPagos)
             ->with('idVenta',$idVenta)
-            ->with('aPagar',($aPagar-$restante));
+            ->with('aPagar',($importe-$restante))
+            ->with('putButtonPosition',$opcionPay);
         //return view('/Altas/prueba')->with('prueba',$fechaActual->toDateString());
     }
     

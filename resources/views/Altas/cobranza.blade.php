@@ -33,28 +33,30 @@
         <table id="tabla" cellpadding = "0" cellspacing="0" style="text-align:center;">
             <thead>
             <tr>
-                <th>Mensualidad</th>
-                <th>Monto</th>
+				<th>No</th>
+                <th>Fecha</th>
+                <th>Abono</th>
                 <th>Dias de retraso</th>
                 <th>Interes</th>	
                 <th>Estado</th>
+				<th>Mensualidad</th>
                 <th>Fecha pagado</th>
-                <th>Total a pagar</th>
                 <th>Acción</th>
             </tr>
             </thead>
             <tbody>
             @for($cont=0;$cont<count($fechas);$cont++)
                 <tr>
+					<td>{{$cont+1}}</td>
                     <td>{{$fechas[$cont]}}</td>
                     <td>${{$mensualidades[$cont]}}</td>
                     <td>{{$diasRetraso[$cont]}}</td>
                     <td>${{$intereses[$cont]}}</td>
                     <td>{{$estados[$cont]}}</td>
+					<td>${{$mensualidades[$cont]+$intereses[$cont]}}</td>
                     <td>{{$fechaPagos[$cont]}}</td>
-                    <td>${{$mensualidades[$cont]+$intereses[$cont]}}</td>
                     <?php 
-                    if($estados[$cont]!="Pagado"){ ?>
+                    if($cont==$putButtonPosition){ ?>
                     <td>
                         <form role="form" method="post" action="{{ url('/Cobranza/Pagar') }}" id="formpay">
                             @csrf
