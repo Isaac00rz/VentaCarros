@@ -135,7 +135,7 @@ class VentasController extends Controller
         $datos[] = $cliente;   
             
         $pdf = PDF::loadView('PDF/tablaPDF', ['plazos' => count($datos)],['datos' => $datos]);
-        return $pdf->stream('result.pdf');
+        return $pdf->download('result.pdf');
     }
 
     public function busquedaA(){

@@ -1,7 +1,10 @@
 @include('Menus.MenuAdmin')
     <link rel="stylesheet" href="{{ asset('css/cotizacion.css') }}">
-    <div class="col-md-5" align="left">
+    <div class="col-md-5" align="left" style="margin-left: 4%;">
             <h1>Plan de Pago:</h1>
+            <h4>Vendedor: {{$datosRaw[0]}}</h4>
+            <h4>Auto: {{$datosRaw[1]}}</h4>
+            <h4>Cliente: {{$datosRaw[2]}}</h4>
         </div>
     <form id = "pdf" action="{{url('Cotizacion/Generar/PDF')}}" method="post">
             @csrf
@@ -44,6 +47,15 @@
             @endfor
         </tbody>
     </table>
+    <form id = "pdf" action="{{url('Cotizacion/Generar/Venta')}}" method="post">
+        @csrf
+        
+        <input name="idCotizacion" id = "idCotizacion" type="hidden" value="{{$idCotizacion}}">
+        <div class="boton" aling="right">
+        <input type="submit" value="Vender">
+        </div>
+        
+</form>
 </body>
 @include('Menus.footer')
 </html>
