@@ -25,6 +25,13 @@ class ReportesController extends Controller
         return view('/Busquedas/busquedaVendedorReporte')->with('vendedores',$consulta);
     }
 
+	public function listaClientes(){
+        $consulta = DB::table('cliente')
+            ->select(DB::raw("RFC, nombre, CONCAT(ciudad,' ',colonia,' ',calle) as direccion")) 
+            ->paginate(10);
+        return view('/Busquedas/busquedaPagoCliente')->with('clientes',$consulta);
+    }
+
     public function comisionVendedor($idVendedor){
         $total = 0;
         $consulta = DB::table('venta')
@@ -51,7 +58,40 @@ class ReportesController extends Controller
         ->with('id',$idVendedor)
         ->with('total',$total);
     }
-
+	//Ver pagos
+	public function buscarCompras($rfc){
+        $consulta = DB::table('venta')
+            ->join('auto','auto.id','=','venta.idauto')
+            ->select('venta.id','auto.marca','auto.modelo','auto.nombre','venta.importe','venta.enganche')
+            ->where('venta.IdCliente','like','%'.$rfc.'%')
+            ->groupBy('venta.id','auto.marca','auto.modelo','auto.nombre','venta.importe','venta.enganche')
+            ->paginate(10);
+        
+        $consultaName = DB::table('cliente')
+            ->select('nombre')
+            ->where('rfc','=',$rfc)
+            ->get();
+        return view('/Busquedas/comprasCliente')->with('compras',$consulta)->with('nombre',$consultaName);
+    }
+	
+	public function pagosClientes($idVenta){
+        $fecha = Carbon::now();
+        $fecha = $fecha->toDateString();
+        $consultaInfo = DB::table('venta')
+            ->join('cliente','cliente.RFC','=','venta.IdCliente')
+            ->join('auto','venta.IdAuto','=','auto.id')
+            ->select('venta.id','cliente.nombre',DB::raw("CONCAT(auto.nombre,' ',auto.modelo,' ',auto.marca) as auto"),'venta.importe','venta.enganche','venta.plazos')
+            ->where('venta.id','=',$idVenta)
+            ->get();
+        
+        $pagos = DB::table('pago')
+            ->select('fecha','mensualidad','interesImporte','diasRetraso')
+            ->where('idVenta','=',$idVenta)
+            ->get();
+        
+        return view('/Reportes/reportePagos')->with('info',$consultaInfo)->with('pagos',$pagos);
+    }
+	
     public function comisionPDF(Request $request){
         $id = $request->input('id');
         $total = 0;
