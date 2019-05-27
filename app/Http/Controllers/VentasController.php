@@ -91,8 +91,7 @@ class VentasController extends Controller
         $abono2 = 0.0;
         $interes = 0.0;
         $mensualidad = 0.0;
-        $fecha->addMonth(1);
-        $importe = ($importe-$descuento)*(1+($comision/100));
+        $importe = ($importe-$descuento);
         $importeEn = $importe * ($enganche/100);
         $saldo  = $importe-$importeEn;
         $abono = $saldo/$plazos;
@@ -211,8 +210,7 @@ class VentasController extends Controller
         $abono2 = 0.0;
         $interes = 0.0;
         $mensualidad = 0.0;
-        $fecha->addMonth(1);
-        $importe = ($importe-$descuento)*(1+($comision/100));
+        $importe = ($importe-$descuento);
         $importeEn = $importe * ($enganche/100);
         $saldo  = $importe-$importeEn;
         $abono = $saldo/$plazos;
@@ -323,8 +321,7 @@ class VentasController extends Controller
         $abono2 = 0.0;
         $interes = 0.0;
         $mensualidad = 0.0;
-        $fecha->addMonth(1);
-        $importe = ($importe-$descuento)*(1+($comision/100));
+        $importe = ($importe-$descuento);
         $importeEn = $importe * ($enganche/100);
         $saldo  = $importe-$importeEn;
         $abono = $saldo/$plazos;
