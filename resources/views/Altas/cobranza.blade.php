@@ -19,7 +19,7 @@
     }
 </style>
 <section class="contenido">
-    <form id = "pdf" action="{{url('Cotizacion/Generar/PDF')}}" method="post">
+    <form id = "pdf" action="{{url('Pagos/Generar/PDF')}}" method="post">
         
     </form>
     <fieldset>
