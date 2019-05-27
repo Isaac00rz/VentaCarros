@@ -160,9 +160,22 @@ class CobranzaController extends Controller
     }
     
     public function generarPdf($idVenta){
-        $pdf = PDF::loadView('PDF/pagosReporte');
-        return $pdf->download('result.pdf');
-        //$pdf = PDF::loadView('PDF/pagosReporte', ['plazos' => count($datos)],['datos' => $datos]);
-        //return $pdf->download('result.pdf');
+        $fecha = Carbon::now();
+        $fecha = $fecha->toDateString();
+        $consultaInfo = DB::table('pago')
+            ->join('cliente','cliente.RFC','=','pago.IdCliente')
+            ->join('venta','venta.id','=','pago.IdVenta')
+            ->join('auto','venta.IdAuto','=','auto.id')
+            ->select('pago.fecha','pago.mensualidad','pago.interesImporte','pago.diasRetraso','cliente.nombre',DB::raw("CONCAT(auto.nombre,' ',auto.modelo,' ',auto.marca) as auto"),'auto.precio','venta.enganche')
+            ->where('idVenta','=',$idVenta)
+            ->get();
+        
+        $pagos = DB::table('pago')
+            ->select('fecha','mensualidad','interesImporte','diasRetraso')
+            ->where('idVenta','=',$idVenta)
+            ->get();
+        
+        $pdf = PDF::loadView('PDF/pagosReporte',['datos' => $consultaInfo],['pagos' => $pagos]);
+        return $pdf->stream();
     }
 }
