@@ -19,15 +19,9 @@
     }
 </style>
 <section class="contenido">
-    <!--
-            return view('/Menus/prueba')
-            ->with('fechas',$fecha)
-            ->with('mensualidades',$mensualidades)
-            ->with('intereses',$intereses)
-            ->with('diasRetraso',$diasRetraso)
-            ->with('estados',$estado)
-            ->with('fechaPagos');
-            -->
+    <form id = "pdf" action="{{url('Pagos/Generar/PDF')}}" method="post">
+        
+    </form>
     <fieldset>
         <legend>Pagos de {{$nombreCliente}}</legend>
         <table id="tabla" cellpadding = "0" cellspacing="0" style="text-align:center;">
