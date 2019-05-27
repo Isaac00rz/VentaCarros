@@ -6,7 +6,7 @@
         <legend>Generar Reportes</legend>
         <p>Reportes Clientes</p>
         <a href="{{ url('/Cobranza')}}">Pagos</a>
-        <a href="{{ url('/')}}">Compras</a>
+        <a href="{{ url('Reportes/Compras')}}">Compras</a>
         <br>
         <hr>
         <p>Reportes Vendedores</p>
