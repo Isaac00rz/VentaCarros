@@ -23,9 +23,10 @@ class VentasController extends Controller
         ->select('rfc','nombre')
         ->get();
         $consulta2 = DB::table('auto')
-        ->select(DB::raw("id, CONCAT(id+'-'+marca,'-',nombre,'-',modelo) as nombre"))
+        ->select(DB::raw("id, CONCAT(id+'-'+marca,'-',nombre,'-',modelo) as nombre, precio"))
         ->get();
-        return view('Altas/altaVentas')->with('clientes',$consulta)->with('autos',$consulta2);
+        return view('Altas/altaVentas')->with('clientes',$consulta)->with('autos',$consulta2)
+        ->with('tamanio',count($consulta2));
     }
 
     public function altaCotizacion(Request $request){
@@ -100,7 +101,7 @@ class VentasController extends Controller
             $fecha->addMonth(1);
             $datos[] = $i+1;
             $datos[] = $fecha->format('d-m-Y');
-            $interes = ($saldo * ($taza/100))/$plazos;
+            $interes = ($saldo * ($taza/100));
             $mensualidad = $abono+$interes;
             $saldo = $saldo - $abono;
             if($saldo<0){
@@ -219,7 +220,7 @@ class VentasController extends Controller
             $fecha->addMonth(1);
             $datos[] = $i+1;
             $datos[] = $fecha->format('d-m-Y');
-            $interes = ($saldo * ($taza/100))/$plazos;
+            $interes = ($saldo * ($taza/100));
             $mensualidad = $abono+$interes;
             $saldo = $saldo - $abono;
             if($saldo<0){
@@ -330,7 +331,7 @@ class VentasController extends Controller
             $fecha->addMonth(1);
             $datos[] = $i+1;
             $datos[] = $fecha->format('d-m-Y');
-            $interes = ($saldo * ($taza/100))/$plazos;
+            $interes = ($saldo * ($taza/100));
             $mensualidad = $abono+$interes;
             $saldo = $saldo - $abono;
             if($saldo<0){

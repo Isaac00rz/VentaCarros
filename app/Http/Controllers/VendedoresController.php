@@ -35,7 +35,9 @@ class VendedoresController extends Controller
             ->insert(['nombre'=> $array_nombre[$i],
             'apellidoP'=>$array_ApellidoP[$i],'apellidoM' => $array_ApellidoM[$i],
             'telefono'=>$array_telefono[$i],'email'=>$array_email[$i]]);
-
+            $consulta2 = DB::table('users')
+            ->insert(['name'=> $array_nombre[$i].$array_ApellidoP[$i].$array_ApellidoM[$i],
+            'email'=>$array_email[$i],'password'=>bcrypt('12345678')]);
             $contador++;
         }
         if($registros==$contador){

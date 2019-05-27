@@ -15,7 +15,8 @@
                 @endforeach    
             </select><br>
             <label for="auto">Auto: </label><br>
-            <select id="auto" name="auto" required>
+            <select id="auto" name="auto"  onchange="precio();" required>
+                <option value="...">...</option>
                 @foreach ($autos as $auto)
                     <option value="{{$auto->id}}"> {{$auto->nombre}}</option>
                 @endforeach   
@@ -37,6 +38,24 @@
     </form>
 </div>
 <script src="{{asset('js/cotizacion.js')}}"></script>
+<script >
+    function precio(){
+        var precios = new Array();
+        var autos = new Array();
+
+        @foreach ($autos as $i => $auto )
+            precios[{{$i}}] = {{$auto->precio}};
+            autos[{{$i}}] = {{$auto->id}};
+        @endforeach
+
+        var autoSeleccionado = parseInt (document.getElementById("auto").value);
+        for (let index = 0; index < {{$tamanio}}; index++) {
+            if(autos[index]==autoSeleccionado){
+                document.getElementById('importe').value = precios[index];
+            }
+        }
+    }
+</script>
 </body>
 @include('Menus.footer')
 </html>

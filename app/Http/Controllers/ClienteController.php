@@ -24,7 +24,7 @@ class ClienteController extends Controller
         $array_nombre = $request->input('nombre');
         $array_calle = $request->input('calle');
         $array_noExt = $request->input('noExterior');
-        $array_noInt = $request->input('noInterior');
+        $array_noInt = $request->input('noInterior','0');
         $array_colonia = $request->input('colonia');
         $array_ciudad = $request->input('ciudad');
         $array_estado = $request->input('estado');

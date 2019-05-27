@@ -19,9 +19,10 @@ class CotizacionController extends Controller
         ->select('rfc','nombre')
         ->get();
         $consulta2 = DB::table('auto')
-        ->select(DB::raw("id, CONCAT(id+'-'+marca,'-',nombre,'-',modelo) as nombre"))
+        ->select(DB::raw("id, CONCAT(id+'-'+marca,'-',nombre,'-',modelo) as nombre, precio"))
         ->get();
-        return view('Altas/altaCotizacion')->with('clientes',$consulta)->with('autos',$consulta2);
+        return view('Altas/altaCotizacion')->with('clientes',$consulta)->with('autos',$consulta2)
+        ->with('tamanio',count($consulta2));
     }
 
     public function index(){
