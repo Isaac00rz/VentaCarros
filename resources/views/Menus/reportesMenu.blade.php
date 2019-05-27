@@ -10,7 +10,7 @@
         <br>
         <hr>
         <p>Reportes Vendedores</p>
-        <a href="{{url('/')}}">Comisiones</a>
+        <a href="{{url('/Reportes/Comisiones')}}">Comisiones</a>
         <br>
         <hr>
         <p>Reportes Varios</p>
