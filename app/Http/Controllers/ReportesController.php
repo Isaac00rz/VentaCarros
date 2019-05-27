@@ -43,7 +43,7 @@ class ReportesController extends Controller
         ->select(DB::raw("CONCAT(nombre,' ',apellidoP,' ',apellidoM) as nombre")) 
         ->where('id','=',$idVendedor)
         ->get();   
-
+        $comision[] = 0;
         foreach ($consulta as $venta) {
             $comision[] = ($venta->importe * (($venta->comision/100)));
         }
