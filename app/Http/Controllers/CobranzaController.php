@@ -157,4 +157,8 @@ class CobranzaController extends Controller
         return redirect("/Cobranza/Pagos/{$idVenta}");
         
     }
+    
+    public function generarPdf($idVenta){
+        
+    }
 }
