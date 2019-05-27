@@ -29,9 +29,9 @@
                             <td class="tds"><input class="inputs" type="number" name="noInterior" maxlength="10" placeholder="No Interior" value="{{$cliente->noInterior}}"></td>
                             <td class="tds"><input class="inputs" type="text" name="colonia" maxlength="150" placeholder="Colonia" value="{{$cliente->colonia}}" required></td>
                             <td class="tds"><input class="inputs" type="text" name="ciudad" maxlength="150" placeholder="Ciudad" value="{{$cliente->ciudad}}" required></td>
-                            <td class="tds"><input class="inputs" type="text" name="colonia" maxlength="150" placeholder="Estado" value="{{$cliente->estado}}" required></td>
+                            <td class="tds"><input class="inputs" type="text" name="estado" maxlength="150" placeholder="Estado" value="{{$cliente->estado}}" required></td>
 
-                            <input type="hidden" name="rfc" value="{{$cliente->rfc}}">
+                            <input type="hidden" name="rfcA" value="{{$cliente->rfc}}">
                         @endforeach
                         </tr>
             

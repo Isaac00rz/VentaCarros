@@ -77,11 +77,11 @@ class ClienteController extends Controller
         $colonia = $request->input('colonia');
         $ciudad = $request->input('ciudad');
         $estado = $request->input('estado');
-        $idCliente = $request->input('rfc');
+        $idCliente = $request->input('rfcA');
 
         $consulta = DB::table('cliente')
             ->where('rfc','=',$idCliente)
-            ->update(['nombre'=> $nombre,
+            ->update(['rfc'=>$rfc,'nombre'=> $nombre,
             'calle'=>$calle,'noExterior' => $noExt,
             'noInterior'=>$noInt,'colonia'=>$colonia,
             'ciudad'=>$ciudad,'estado'=>$estado]);
