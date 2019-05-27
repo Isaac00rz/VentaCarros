@@ -8,6 +8,23 @@
     #formpay{
         text-align: center;
     }
+     #reporte{
+        margin-left: 70%;
+        padding: 1%;
+        background: #1883BA;
+        text-decoration: none;
+        color:white;
+        font-family: arial;
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: 50px;
+        border:2px solid #0016B0;
+        border-radius: 10px;
+    }
+    #reporte:hover{
+        transition: all 0.3s;
+        opacity:0.5;
+    }
     #pay{
         border:none;
         padding: 7%;
@@ -17,11 +34,11 @@
         font-weight: bold;
         margin-bottom: 7%;
     }
+    
 </style>
+<br /><br /><br />
+<a id="reporte" href="{{url('Pagos/Generar/PDF',$idVenta)}}">Crear PDF</a>
 <section class="contenido">
-    <form id = "pdf" action="{{url('Pagos/Generar/PDF')}}" method="post">
-        
-    </form>
     <fieldset>
         <legend>Pagos de {{$nombreCliente}}</legend>
         <table id="tabla" cellpadding = "0" cellspacing="0" style="text-align:center;">

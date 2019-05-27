@@ -5,7 +5,7 @@
     <fieldset>
         <legend>Generar Reportes</legend>
         <p>Reportes Clientes</p>
-        <a href="{{ url('/')}}">Pagos</a>
+        <a href="{{ url('/Cobranza')}}">Pagos</a>
         <a href="{{ url('/')}}">Compras</a>
         <br>
         <hr>
