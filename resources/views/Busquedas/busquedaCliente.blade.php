@@ -30,7 +30,7 @@
         <td>{{$cliente->estado}}</td>
 		<td>
 			<a href="{{ URL('/Clientes/Editar',$cliente->rfc) }}">Editar</a>
-			<a href="{{ URL('/Clientes/Eliminar',$cliente->rfc) }}">Eliminar</a>
+			
 		</td>
 		</tr>
 	@endforeach
