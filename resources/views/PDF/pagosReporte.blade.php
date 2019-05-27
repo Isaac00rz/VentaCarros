@@ -18,9 +18,18 @@
         <div id="clienteInfo">
             <h5>Cliente: {{$datos[0]->nombre}}</h5>
             <h5>Auto: {{$datos[0]->auto}}</h5>
-            <h5>Costo del auto: ${{$datos[0]->precio}}</h5>
-            <h5>Enganche: ${{$datos[0]->enganche}}</h5>
-            <h5>Pago restante: <?php echo(($datos[0]->precio-(bcdiv(count($pagos)*$pagos[0]->mensualidad,'1',2)))-$datos[0]->enganche) ?></h5>
+            <h5>Costo del auto: ${{$datos[0]->importe}}</h5>
+            <h5>Enganche: $
+            <?php
+                $enganche=bcdiv((($datos[0]->enganche)/100)*($datos[0]->importe),'1',2);
+                echo($enganche);
+            ?>
+            </h5>
+            <h5>Pago restante: 
+                <?php 
+                echo (bcdiv((($datos[0]->importe)-$enganche)-(((count($pagos))*(($datos[0]->importe-$enganche)/$datos[0]->plazos))),'1',2));
+            ?>
+            </h5>
         </div>
         
         <table>

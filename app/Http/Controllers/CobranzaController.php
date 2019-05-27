@@ -50,16 +50,17 @@ class CobranzaController extends Controller
     */
     public function redirectToPagos($idVenta){
         $consulta = DB::table('venta')
-            ->select('fecha','plazos','tasa','importe','idCliente')
+            ->select('fecha','plazos','tasa','importe','idCliente','enganche')
             ->where('id','=',$idVenta)
-            ->get();
+            ->get();        
         $fechaVenta = $consulta[0]->fecha;
         $idCliente = $consulta[0]->idCliente;
         $plazos = $consulta[0]->plazos;
         $fechaPago = new Carbon($fechaVenta);
         $fechaActual = Carbon::now();
-        $mensualidad = ($consulta[0]->importe)/$plazos;
-        $importe = $consulta[0]->importe;
+        $enganche = (($consulta[0]->enganche)/100)*$consulta[0]->importe;
+        $importe = ($consulta[0]->importe)-$enganche;
+        $mensualidad = ($importe)/$plazos;
         $aPagar = $importe;
         $tasa = (($consulta[0]->tasa)/100);
         $importeTasa = 0;
@@ -162,12 +163,11 @@ class CobranzaController extends Controller
     public function generarPdf($idVenta){
         $fecha = Carbon::now();
         $fecha = $fecha->toDateString();
-        $consultaInfo = DB::table('pago')
-            ->join('cliente','cliente.RFC','=','pago.IdCliente')
-            ->join('venta','venta.id','=','pago.IdVenta')
+        $consultaInfo = DB::table('venta')
+            ->join('cliente','cliente.RFC','=','venta.IdCliente')
             ->join('auto','venta.IdAuto','=','auto.id')
-            ->select('pago.fecha','pago.mensualidad','pago.interesImporte','pago.diasRetraso','cliente.nombre',DB::raw("CONCAT(auto.nombre,' ',auto.modelo,' ',auto.marca) as auto"),'auto.precio','venta.enganche')
-            ->where('idVenta','=',$idVenta)
+            ->select('cliente.nombre',DB::raw("CONCAT(auto.nombre,' ',auto.modelo,' ',auto.marca) as auto"),'venta.importe','venta.enganche','venta.plazos')
+            ->where('venta.id','=',$idVenta)
             ->get();
         
         $pagos = DB::table('pago')
