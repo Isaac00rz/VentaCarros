@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use PDF;
 
 class CobranzaController extends Controller
 {
@@ -159,6 +160,9 @@ class CobranzaController extends Controller
     }
     
     public function generarPdf($idVenta){
-        
+        $pdf = PDF::loadView('PDF/pagosReporte');
+        return $pdf->download('result.pdf');
+        //$pdf = PDF::loadView('PDF/pagosReporte', ['plazos' => count($datos)],['datos' => $datos]);
+        //return $pdf->download('result.pdf');
     }
 }

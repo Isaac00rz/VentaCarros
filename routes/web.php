@@ -90,8 +90,8 @@ Route::post('/Cobranza/Pagar','CobranzaController@pagar');
 
 //Reportes
 Route::get('/Reportes',"ReportesController@index");
-<<<<<<< HEAD
-Route::get('Pagos/Generar/PDF','CobranzaController@generarPdf');
-=======
+
+Route::get('Pagos/Generar/PDF/{id}','CobranzaController@generarPdf');
+
 Route::get('/Reportes/Comisiones',"ReportesController@listaVendedores");
->>>>>>> 0f39393775e580523bf224a60833804a52e3d950
+
