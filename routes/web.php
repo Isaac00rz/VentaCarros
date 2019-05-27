@@ -91,3 +91,5 @@ Route::post('/Cobranza/Pagar','CobranzaController@pagar');
 //Reportes
 Route::get('/Reportes',"ReportesController@index");
 Route::get('/Reportes/Comisiones',"ReportesController@listaVendedores");
+Route::get('/Reportes/Comisiones/{idVendedor}',"ReportesController@comisionVendedor");
+Route::post('/Reportes/Comisiones/Generar/PDF',"ReportesController@comisionPDF");
