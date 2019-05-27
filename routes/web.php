@@ -103,3 +103,7 @@ Route::get('Pagos/Generar/PDF/{id}','CobranzaController@generarPdf');
 
 Route::get('/Reportes/Comisiones',"ReportesController@listaVendedores");
 
+Route::get('/Reportes/Compras',"ReportesController@clientesCompras");
+Route::get('/Reportes/Compras/{rfc}',"ReportesController@reporteCompras");
+Route::POST('/Reportes/Compras/GenerarPDF',"ReportesController@reporteComprasPDF");
+
