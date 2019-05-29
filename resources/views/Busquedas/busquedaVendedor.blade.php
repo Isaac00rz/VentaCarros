@@ -4,7 +4,10 @@
 <title>Baja/Mod Vendedors</title>
 <section class="contenido">
     <fieldset>
-        <legend>Modificar/Baja Vendedor</legend>
+		<legend>Modificar/Baja Vendedor</legend>
+		@if(session()->has('message')) 
+		<strong>{{ session()->get('message') }} </strong>
+	@endif 
 <table id="tabla" cellpadding = "0" cellspacing="0">
 	<thead>
 	<tr>

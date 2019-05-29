@@ -22,7 +22,7 @@
                         </tr>
                         <tr>
                         @foreach ($clientes as $cliente)
-                            <td class="tds"><input class="inputs" type="text" name="rfc" maxlength = "50" placeholder="RFC" value="{{$cliente->rfc}}" required></td>
+                            <td class="tds"><input class="inputs" type="text" name="rfc" maxlength = "50" placeholder="RFC" value="{{$cliente->rfc}}" disabled></td>
                             <td class="tds"><input class="inputs" type="text" name="nombre" maxlength = "150" placeholder="Nombre" value="{{$cliente->nombre}}" required></td>
                             <td class="tds"><input class="inputs" type="text" name="calle" maxlength="150" placeholder="Calle" value="{{$cliente->calle}}" required></td>
                             <td class="tds"><input class="inputs" type="number" name="noExterior" maxlength="10" placeholder="No Exterior" value="{{$cliente->noExterior}}" required></td>

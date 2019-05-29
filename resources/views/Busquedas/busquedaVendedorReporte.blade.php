@@ -6,6 +6,7 @@
     <fieldset>
         <legend>Vendedores Comision</legend>
 <table id="tabla" cellpadding = "0" cellspacing="0">
+		
 	<thead>
 	<tr>
         <th>ID</th>

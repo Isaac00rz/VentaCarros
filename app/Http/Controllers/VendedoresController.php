@@ -80,11 +80,22 @@ class VendedoresController extends Controller
 }
 
     public function eliminar($idVendedor){
-        $consulta = DB::table('vendedor')
+
+        $comprobar = DB::table('venta')
+        ->select('id')
+        ->where('idVendedor','=',$idVendedor)
+        ->get();
+
+        if(count($comprobar)>0){
+            return redirect('Vendedores/BajaMod')->with('message', 'Vendedor no eliminado, hay registros existentes en venta');
+        }else{
+            $consulta = DB::table('vendedor')
             ->where('id','=',$idVendedor)
             ->delete();
-
-        return redirect('Vendedores/BajaMod')->with('message', 'Datos Modificados');
+            return redirect('Vendedores/BajaMod')->with('message', 'Dato Eliminao');
+        }
+        
+        
     }
 
     public function buscarTodo(){

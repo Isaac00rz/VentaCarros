@@ -90,11 +90,21 @@ class ClienteController extends Controller
 }
 
     public function eliminar($idCliente){
+        $comprobar = DB::table('venta')
+        ->select('id')
+        ->where('idCliente','=',$idCliente)
+        ->get();
+
+        if(count($comprobar)>0){
+            return redirect('Clientes/BajaMod')->with('message', 'Cliente no eliminado, hay registros existentes en venta');
+        }else{
+
         $consulta = DB::table('cliente')
             ->where('rfc','=',$idCliente)
             ->delete();
 
         return redirect('Clientes/BajaMod')->with('message', 'Datos Modificados');
+        }
     }
 
     public function buscarTodo(){
