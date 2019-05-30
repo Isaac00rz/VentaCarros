@@ -15,6 +15,8 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
+Route::get('/search',"ClienteController@search");
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/Vendedores',"VendedoresController@index");
@@ -35,7 +37,7 @@ Route::get('/Clientes/Editar/{idCliente}',"ClienteController@formularioMod");
 Route::post('/Modificar/Cliente/editarCliente',"ClienteController@editarCliente");
 Route::get('/Clientes/Eliminar/{idCliente}',"ClienteController@eliminar");
 Route::get('/Clientes/Buscar',"ClienteController@buscarTodo");
-Route::post('/Clientes/buscarNombre',"ClienteController@buscarNombre");
+Route::get('/Clientes/buscarNombre',"ClienteController@search");
 
 Route::get('/Cotizacion',"CotizacionController@index");
 Route::get('/Cotizacion/Alta',"CotizacionController@formulario");

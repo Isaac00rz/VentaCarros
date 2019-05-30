@@ -123,4 +123,45 @@ class ClienteController extends Controller
             ->paginate(10);
         return view('/Busquedas/busquedaACliente')->with('clientes',$consulta);
     }
+
+    public function search(Request $request){
+        if($request->ajax()){
+            $output="";
+            $respuesta = $request->search;
+
+            if($respuesta==''){
+                $output.='<tr>'.
+                '<td>'.'</td>'.
+                    '<td>'.'</td>'.
+                    '<td>'.'</td>'.
+                    '<td>'.'</td>'.
+                    '<td>'.'</td>'.
+                    '<td>'.'</td>'.
+                    '<td>'.'</td>'.
+                    '<td>'.'</td>'.
+                '</tr>';
+            }else{
+                $clientes=DB::table('cliente')
+                ->select(DB::raw("rfc, nombre, calle, noExterior, noInterior, colonia, ciudad, estado"))
+                ->where('nombre','LIKE','%'.$request->search."%")
+                ->get();
+            if($clientes){
+                foreach ($clientes as $key => $cliente) {
+                    $output.='<tr>'.
+                    '<td>'.$cliente->rfc.'</td>'.
+                    '<td>'.$cliente->nombre.'</td>'.
+                    '<td>'.$cliente->calle.'</td>'.
+                    '<td>'.$cliente->noExterior.'</td>'.
+                    '<td>'.$cliente->noInterior.'</td>'.
+                    '<td>'.$cliente->colonia.'</td>'.
+                    '<td>'.$cliente->ciudad.'</td>'.
+                    '<td>'.$cliente->estado.'</td>'.
+                    '</tr>';
+                }
+            }
+            
+            return Response($output);
+            }
+        }
+    }
 }

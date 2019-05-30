@@ -7,7 +7,7 @@
         <p>Reportes Clientes</p>
 
         <a href="{{ url('/Reportes/Pagos')}}">Pagos</a>
-        <a href="{{ url('/')}}">Compras</a>
+        <a href="{{ url('/Compras')}}">Compras</a>
 
 
         <br>
