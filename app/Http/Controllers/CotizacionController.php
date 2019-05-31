@@ -7,6 +7,7 @@ use PDF;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use CalculosHelper;
 
 class CotizacionController extends Controller
 {
@@ -84,35 +85,7 @@ class CotizacionController extends Controller
             'plazos'=>$plazos,'tasa'=>$taza,'comision'=>$comision,'importe'=>$importe]);
         
         //Calculos
-        $fecha = Carbon::now();
-        $fecha->setYear($fechaN[0]);
-        $fecha->setMonth($fechaN[1]);
-        $fecha->setDay($fechaN[2]);
-        $abono = 0.0;
-        $abono2 = 0.0;
-        $interes = 0.0;
-        $mensualidad = 0.0;
-        $importe = ($importe-$descuento);
-        $importeEn = $importe * ($enganche/100);
-        $saldo  = $importe-$importeEn;
-        $abono = $saldo/$plazos;
-        
-        for($i = 0;$i<$plazos;$i++){
-            $fecha->addMonth(1);
-            $datos[] = $i+1;
-            $datos[] = $fecha->format('d-m-Y');
-            $interes = ($saldo * ($taza/100));
-            $mensualidad = $abono+$interes;
-            $saldo = $saldo - $abono;
-            if($saldo<0){
-                $saldo = 0;
-            }
-            $datos[] = round($abono,2);
-            $datos[] = round($interes,2);
-            $datos[] = round($mensualidad,2);
-            $datos[] = round($saldo,2);
-            
-        }
+        $datos = CalculosHelper::calcularPlanPago($fechaN,$importe,$descuento,$enganche,$plazos,$taza);
         $datosRaw[] = $nombreVendedor;
         $datosRaw[] = $nombreAuto;
         $datosRaw[] = $nombreCliente;
@@ -122,7 +95,6 @@ class CotizacionController extends Controller
         ->with('datos',$datos)->with('datosRaw',$datosRaw)->with('idCotizacion',$consulta);
 
     }
-
 
     public function generarPDF(Request $request){
         $datos = $request->input('datos');
@@ -174,35 +146,7 @@ class CotizacionController extends Controller
             ->delete();
         }
         //Calculos
-        $fecha = Carbon::now();
-        $fecha->setYear($fechaN[0]);
-        $fecha->setMonth($fechaN[1]);
-        $fecha->setDay($fechaN[2]);
-        $abono = 0.0;
-        $abono2 = 0.0;
-        $interes = 0.0;
-        $mensualidad = 0.0;
-        $importe = ($importe-$descuento);
-        $importeEn = $importe * ($enganche/100);
-        $saldo  = $importe-$importeEn;
-        $abono = $saldo/$plazos;
-        
-        for($i = 0;$i<$plazos;$i++){
-            $fecha->addMonth(1);
-            $datos[] = $i+1;
-            $datos[] = $fecha->format('d-m-Y');
-            $interes = ($saldo * ($taza/100))/$plazos;
-            $mensualidad = $abono+$interes;
-            $saldo = $saldo - $abono;
-            if($saldo<0){
-                $saldo = 0;
-            }
-            $datos[] = round($abono,2);
-            $datos[] = round($interes,2);
-            $datos[] = round($mensualidad,2);
-            $datos[] = round($saldo,2);
-            
-        }
+        $datos = CalculosHelper::calcularPlanPago($fechaN,$importe,$descuento,$enganche,$plazos,$taza);
         $datosRaw[] = $nombreVendedor;
         $datosRaw[] = $nombreAuto;
         $datosRaw[] = $nombreCliente;
@@ -273,37 +217,9 @@ class CotizacionController extends Controller
             $nombreAuto = $dat->auto;
             $nombreCliente = $dat->cliente;
         }
-
-        //Calculos
-        $fecha = Carbon::now();
-        $fecha->setYear($fechaN[0]);
-        $fecha->setMonth($fechaN[1]);
-        $fecha->setDay($fechaN[2]);
-        $abono = 0.0;
-        $abono2 = 0.0;
-        $interes = 0.0;
-        $mensualidad = 0.0;
-        $importe = ($importe-$descuento);
-        $importeEn = $importe * ($enganche/100);
-        $saldo  = $importe-$importeEn;
-        $abono = $saldo/$plazos;
-        
-        for($i = 0;$i<$plazos;$i++){
-            $fecha->addMonth(1);
-            $datos[] = $i+1;
-            $datos[] = $fecha->format('d-m-Y');
-            $interes = ($saldo * ($taza/100));
-            $mensualidad = $abono+$interes;
-            $saldo = $saldo - $abono;
-            if($saldo<0){
-                $saldo = 0;
-            }
-            $datos[] = round($abono,2);
-            $datos[] = round($interes,2);
-            $datos[] = round($mensualidad,2);
-            $datos[] = round($saldo,2);
-            
-        }
+        //$datos = calcularPlanPago($fechaN,$importe,$descuento,$enganche,$plazos,$taza);
+        $datos = CalculosHelper::calcularPlanPago($fechaN,$importe,$descuento,$enganche,$plazos,$taza);
+       // $datos = $this->calcular($fechaN,$importe,$descuento,$enganche,$plazos,$taza);
         $datosRaw[] = $nombreVendedor;
         $datosRaw[] = $nombreAuto;
         $datosRaw[] = $nombreCliente;
@@ -311,6 +227,7 @@ class CotizacionController extends Controller
         return view('Altas/altaCotizacionR')->with('plazos', count($datos))
         ->with('datos',$datos)->with('datosRaw',$datosRaw)->with('idCotizacion',$idCotizacion);
     }
+
 
     public function editar($idCotizacion){
         $consulta = DB::table('cliente')
@@ -386,40 +303,11 @@ class CotizacionController extends Controller
             'plazos'=>$plazos,'tasa'=>$taza,'comision'=>$comision,'importe'=>$importe]);
         
         //Calculos
-        $fecha = Carbon::now();
-        $fecha->setYear($fechaN[0]);
-        $fecha->setMonth($fechaN[1]);
-        $fecha->setDay($fechaN[2]);
-        $abono = 0.0;
-        $abono2 = 0.0;
-        $interes = 0.0;
-        $mensualidad = 0.0;
-        $importe = ($importe-$descuento);
-        $importeEn = $importe * ($enganche/100);
-        $saldo  = $importe-$importeEn;
-        $abono = $saldo/$plazos;
-        
-        for($i = 0;$i<$plazos;$i++){
-            $fecha->addMonth(1);
-            $datos[] = $i+1;
-            $datos[] = $fecha->format('d-m-Y');
-            $interes = ($saldo * ($taza/100));
-            $mensualidad = $abono+$interes;
-            $saldo = $saldo - $abono;
-            if($saldo<0){
-                $saldo = 0;
-            }
-            $datos[] = round($abono,2);
-            $datos[] = round($interes,2);
-            $datos[] = round($mensualidad,2);
-            $datos[] = round($saldo,2);
-            
-        }
+        $datos = CalculosHelper::calcularPlanPago($fechaN,$importe,$descuento,$enganche,$plazos,$taza);
+
         $datosRaw[] = $nombreVendedor;
         $datosRaw[] = $nombreAuto;
         $datosRaw[] = $nombreCliente;
-
-
 
         return view('Altas/altaCotizacionR')->with('plazos', count($datos))
         ->with('datos',$datos)->with('datosRaw',$datosRaw)->with('idCotizacion',$id);
